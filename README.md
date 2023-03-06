@@ -11,7 +11,7 @@
  * [UD_French_ParisSotires](https://github.com/UniversalDependencies/UD_French-ParisStories) (spoken)
  * [UD_French-PUD](https://github.com/UniversalDependencies/UD_French-PUD) (written)
 
-The identification of interrogatives clauses and the extraction were performed using the FUDIA programme. 20 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
+The identification of interrogatives clauses and the extraction were performed using the [FUDIA](https://github.com/Valentin-D-Richard/FUDIA) programme. 20 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
 
 ## Changes wrt. original UD corpora
 
@@ -48,7 +48,7 @@ For each set, an enriched version is provided. The enriched version contains the
  * edged `cue:mark` from the head of the interrogative clause to the interrogative marker
  * feature `Quoted="Yes"` for quoted segments
 
-For more information, see the FUDIA documentation.
+For more information, see the [FUDIA documentation](https://github.com/Valentin-D-Richard/FUDIA/blob/main/FUDIA_README.md).
 
 ## Genres
 The corpus contains written sentences and trasncriptions of spoken sentences. More about the different genres is to be found in the documentation of the original corpora.
@@ -70,7 +70,6 @@ UPOS: converted from manual
 XPOS: not available
 Features: converted from manual
 Relations: converted from manual
-Contributors: Valentin D. Richard
 Contributing: elsewhere
 Contact: valentin.d.richard@gmail.com
 ===============================================================================
