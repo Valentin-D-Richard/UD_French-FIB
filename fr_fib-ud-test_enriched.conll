@@ -344,59 +344,6 @@
 22	homme	homme	NOUN	_	Gender=Masc|Number=Sing	19	nmod	_	_
 23	?	?	PUNCT	_	_	7	punct	_	_
 
-# sent_id = GSD_fr-ud-test_00083
-# text = c'est-à-dire--poursuit-il son argument--, " avant, le Maroc pensait que les indépendantistes étaient tout au mieux un 5%, les militants, mais quand on nous a vus tous unis, main dans la main, on n'en revenait pas ;
-1	c'est-à-dire	c'est-à-dire	CCONJ	_	_	14	cc	_	SpaceAfter=No
-2	--	--	PUNCT	_	_	3	punct	_	SpaceAfter=No
-3	poursuit	poursuivre	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	14	parataxis	_	ClauseType=Int|Quoted=Yes|SpaceAfter=No
-4	-il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	3|3	cue:mark|nsubj	_	wordform=il
-5	son	son	DET	_	Number=Sing|Number[psor]=Sing|Person[psor]=3|Poss=Yes|PronType=Prs	6	det	_	_
-6	argument	argument	NOUN	_	Gender=Masc|Number=Sing	3	obj	_	SpaceAfter=No
-7	--	--	PUNCT	_	_	3	punct	_	SpaceAfter=No
-8	,	,	PUNCT	_	_	3	punct	_	_
-9	"	"	PUNCT	_	_	3	punct	_	_
-10	avant	avant	ADV	_	_	14	advmod	_	SpaceAfter=No
-11	,	,	PUNCT	_	_	10	punct	_	_
-12	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
-13	Maroc	Maroc	PROPN	_	Gender=Masc|Number=Sing	14	nsubj	_	_
-14	pensait	penser	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	0	root	_	_
-15	que	que	SCONJ	_	_	25	mark	_	_
-16	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	17	det	_	_
-17	indépendantistes	indépendantiste	NOUN	_	Gender=Masc|Number=Plur	25	nsubj	_	_
-18	étaient	être	AUX	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	25	cop	_	_
-19	tout	tout	PRON	_	Gender=Masc|Number=Sing	25	advmod	_	ExtPos=ADV|Idiom=Yes
-20-21	au	_	_	_	_	_	_	_	_
-20	à	à	ADP	_	_	19	fixed	_	InIdiom=Yes
-21	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	19	fixed	_	InIdiom=Yes
-22	mieux	mieux	NOUN	_	Gender=Masc|Number=Sing	19	fixed	_	InIdiom=Yes
-23	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	25	det	_	_
-24	5	5	NUM	_	Number=Plur	25	nummod	_	SpaceAfter=No
-25	%	%	SYM	_	Gender=Masc|Number=Sing	14	ccomp	_	ExtPos=NOUN|SpaceAfter=No
-26	,	,	PUNCT	_	_	28	punct	_	_
-27	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	28	det	_	_
-28	militants	militant	NOUN	_	Gender=Masc|Number=Plur	25	appos	_	SpaceAfter=No
-29	,	,	PUNCT	_	_	47	punct	_	_
-30	mais	mais	CCONJ	_	_	47	cc	_	_
-31	quand	quand	SCONJ	_	_	35	mark	_	_
-32	on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	35	nsubj	_	_
-33	nous	le	PRON	_	Number=Plur|Person=1|PronType=Prs	35	obj	_	_
-34	a	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	35	aux:tense	_	_
-35	vus	voir	VERB	_	Gender=Masc|Number=Plur|Tense=Past|VerbForm=Part	47	advcl	_	_
-36	tous	tout	PRON	_	Gender=Masc|Number=Plur|Person=3|PronType=Ind	37	obl:mod	_	_
-37	unis	uni	ADJ	_	Gender=Masc|Number=Plur	35	xcomp	_	SpaceAfter=No
-38	,	,	PUNCT	_	_	39	punct	_	_
-39	main	main	NOUN	_	Gender=Fem|Number=Sing	37	obl:mod	_	_
-40	dans	dans	ADP	_	_	42	case	_	_
-41	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	42	det	_	_
-42	main	main	NOUN	_	Gender=Fem|Number=Sing	39	nmod	_	SpaceAfter=No
-43	,	,	PUNCT	_	_	35	punct	_	_
-44	on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	47	nsubj	_	_
-45	n'	ne	ADV	_	Polarity=Neg	47	advmod	_	SpaceAfter=No
-46	en	en	PRON	_	Person=3|PronType=Prs	47	expl	_	_
-47	revenait	revenir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	14	conj	_	_
-48	pas	pas	ADV	_	Polarity=Neg	47	advmod	_	_
-49	;	;	PUNCT	_	_	14	punct	_	_
-
 # sent_id = GSD_fr-ud-test_00080
 # text = Je me demande s'il y a une loi chez nous qui peut condamner des citoyens pour des rêves illégaux ?
 1	Je	il	PRON	_	Number=Sing|Person=1|PronType=Prs	3	nsubj	_	wordform=je
@@ -718,21 +665,6 @@
 16	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	17	det	_	AlignBegin=83792|AlignEnd=84076
 17	mot	mot	NOUN	_	Gender=Masc|Number=Sing	15	obj	_	AlignBegin=84076|AlignEnd=84360
 18	?	?	PUNCT	_	_	6	punct	_	AlignBegin=84360|AlignEnd=84360
-
-# sent_id = ParisStories_ParisStories_2022_4_pesteDeMaternelle__33
-# sound_url = PS_2022_4_pesteDeMaternelle.mp3
-# speaker = 0
-# text = je sais plus comment, on les avait distraits.
-1	je	il	PRON	_	Number=Sing|Person=1|PronType=Prs	2	nsubj	_	AlignBegin=77539|AlignEnd=77823
-2	sais	savoir	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	AlignBegin=77823|AlignEnd=78107|ClauseType=Int
-3	plus	plus	ADV	_	_	2	advmod	_	AlignBegin=78107|AlignEnd=78392
-4	comment	comment	ADV	_	PronType=Int	2|2	advmod|cue:wh	_	AlignBegin=78392|AlignEnd=78676|PhraseType=Int|SpaceAfter=No
-5	,	,	PUNCT	_	_	9	punct	_	AlignBegin=78676|AlignEnd=78676
-6	on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	9	nsubj	_	AlignBegin=78676|AlignEnd=78960
-7	les	le	PRON	_	Number=Plur|Person=3|PronType=Prs	9	obj	_	AlignBegin=78960|AlignEnd=79244
-8	avait	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	9	aux:tense	_	AlignBegin=79244|AlignEnd=79528
-9	distraits	distraire	VERB	_	Gender=Masc|Number=Plur|Tense=Past|VerbForm=Part	2	parataxis	_	AlignBegin=79528|AlignEnd=79813|SpaceAfter=No
-10	.	.	PUNCT	_	_	2	punct	_	AlignBegin=79813|AlignEnd=79813
 
 # sent_id = ParisStories_ParisStories_2022_4_pesteDeMaternelle__24
 # sound_url = PS_2022_4_pesteDeMaternelle.mp3

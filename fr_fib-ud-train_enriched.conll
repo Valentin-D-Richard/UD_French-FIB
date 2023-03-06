@@ -31433,43 +31433,6 @@
 11	manifestes	manifeste	ADJ	_	Gender=Masc|Number=Plur	8	amod	_	_
 12	?	?	PUNCT	_	_	2	punct	_	_
 
-# sent_id = GSD_fr-ud-train_12149
-# text = À vrai dire, peu se soucient des colonies à l'intérieur du territoire français, et l'on ne manqua pas de se demander sérieusement « À quoi bon les colonies ?
-1	À	à	ADP	_	_	7	advmod	_	ExtPos=ADV|Idiom=Yes|wordform=à
-2	vrai	vrai	ADV	_	_	1	fixed	_	InIdiom=Yes
-3	dire	dire	VERB	_	VerbForm=Inf	1	fixed	_	InIdiom=Yes|SpaceAfter=No
-4	,	,	PUNCT	_	_	1	punct	_	_
-5	peu	peu	ADV	_	_	7	nsubj	_	ExtPos=PRON
-6	se	se	PRON	_	Person=3|PronType=Prs|Reflex=Yes	7	expl:pv	_	_
-7	soucient	soucier	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-8	des	un	DET	_	Definite=Ind|Number=Plur|PronType=Art	9	det	_	_
-9	colonies	colonie	NOUN	_	Gender=Fem|Number=Plur	7	obj	_	_
-10	à	à	ADP	_	_	12	case	_	_
-11	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	12	det	_	SpaceAfter=No
-12	intérieur	intérieur	NOUN	_	Gender=Masc|Number=Sing	9	nmod	_	_
-13-14	du	_	_	_	_	_	_	_	_
-13	de	de	ADP	_	_	15	case	_	_
-14	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	15	det	_	_
-15	territoire	territoire	NOUN	_	Gender=Masc|Number=Sing	12	nmod	_	_
-16	français	français	ADJ	_	Gender=Masc|Number=Sing	15	amod	_	SpaceAfter=No
-17	,	,	PUNCT	_	_	21	punct	_	_
-18	et	et	CCONJ	_	_	21	cc	_	_
-19	l'on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	21	nsubj	_	wordform=on
-20	ne	ne	ADV	_	Polarity=Neg	21	advmod	_	_
-21	manqua	manquer	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	7	conj	_	ClauseType=Int
-22	pas	pas	ADV	_	Polarity=Neg	21	advmod	_	_
-23	de	de	ADP	_	_	25	mark	_	_
-24	se	se	PRON	_	Person=3|PronType=Prs|Reflex=Yes	25	iobj	_	_
-25	demander	demander	VERB	_	VerbForm=Inf	21	xcomp	_	Subject=SubjRaising
-26	sérieusement	sérieusement	ADV	_	_	25	advmod	_	_
-27	«	«	PUNCT	_	_	28	punct	_	_
-28	À	à	ADP	_	_	32	advmod	_	ExtPos=ADV|Idiom=Yes|PhraseType=Int|wordform=à
-29	quoi	quoi	PRON	_	Person=3|PronType=Int	21|28|28	cue:wh|cue:wh|fixed	_	InIdiom=Yes
-30	bon	bon	ADJ	_	Gender=Masc|Number=Sing	28	fixed	_	InIdiom=Yes
-31	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	32	det	_	_
-32	colonies	colonie	NOUN	_	Gender=Fem|Number=Plur	25	obj	_	_
-33	?	?	PUNCT	_	_	32	punct	_	_
-
 # sent_id = GSD_fr-ud-train_12126
 # text = Où la mettre, où ?
 1	Où	où	ADV	_	PronType=Int	3|3	cue:wh|iobj	_	PhraseType=Int|wordform=où
@@ -32141,46 +32104,6 @@
 33	ONU	ONU	PROPN	_	Number=Sing	30	nmod	_	SpaceAfter=No
 34	.	.	PUNCT	_	_	7	punct	_	_
 
-# sent_id = GSD_fr-ud-train_10750
-# text = Frédérique Villemur souligne combien " en défendant un courant qui ne reniait ni l'expression du corps ni la spontanéité du geste, Paul Facchetti a tenté d'en explorer les confins.
-1	Frédérique	Frédérique	PROPN	_	_	3	nsubj	_	_
-2	Villemur	Villemur	PROPN	_	_	1	flat:name	_	_
-3	souligne	souligner	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	ClauseType=Int
-4	combien	combien	ADV	_	PronType=Int	3|3	advmod|cue:wh	_	PhraseType=Int
-5	"	"	PUNCT	_	_	29	punct	_	_
-6	en	en	ADP	_	_	7	mark	_	_
-7	défendant	défendre	VERB	_	Tense=Pres|VerbForm=Part	29	advcl	_	_
-8	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	9	det	_	_
-9	courant	courant	NOUN	_	Gender=Masc|Number=Sing	7	obj	_	_
-10	qui	qui	PRON	_	PronType=Rel	12	nsubj	_	_
-11	ne	ne	ADV	_	Polarity=Neg	12	advmod	_	_
-12	reniait	renier	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	9	acl:relcl	_	_
-13	ni	ni	CCONJ	_	_	15	cc	_	_
-14	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	15	det	_	SpaceAfter=No
-15	expression	expression	NOUN	_	Gender=Fem|Number=Sing	12	obj	_	_
-16-17	du	_	_	_	_	_	_	_	_
-16	de	de	ADP	_	_	18	case	_	_
-17	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	18	det	_	_
-18	corps	corps	NOUN	_	Gender=Masc|Number=Sing	15	nmod	_	_
-19	ni	ni	CCONJ	_	_	21	cc	_	_
-20	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	21	det	_	_
-21	spontanéité	spontanéité	NOUN	_	Gender=Fem|Number=Sing	15	conj	_	_
-22-23	du	_	_	_	_	_	_	_	_
-22	de	de	ADP	_	_	24	case	_	_
-23	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	24	det	_	_
-24	geste	geste	NOUN	_	Gender=Masc|Number=Sing	21	nmod	_	SpaceAfter=No
-25	,	,	PUNCT	_	_	7	punct	_	_
-26	Paul	Paul	PROPN	_	_	29	nsubj	_	_
-27	Facchetti	Facchetti	PROPN	_	_	26	flat:name	_	_
-28	a	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	29	aux:tense	_	_
-29	tenté	tenter	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	3	ccomp	_	_
-30	d'	de	ADP	_	_	32	mark	_	SpaceAfter=No
-31	en	en	PRON	_	Person=3|PronType=Prs	34	nmod	_	_
-32	explorer	explorer	VERB	_	VerbForm=Inf	29	xcomp	_	Subject=SubjRaising
-33	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	34	det	_	_
-34	confins	confins	NOUN	_	Gender=Masc|Number=Plur	32	obj	_	SpaceAfter=No
-35	.	.	PUNCT	_	_	3	punct	_	_
-
 # sent_id = GSD_fr-ud-train_10681
 # text = Dans ce roman, Upfield expliquait comment se débarrasser d'un cadavre sans laisser de traces.
 1	Dans	dans	ADP	_	_	3	case	_	wordform=dans
@@ -32717,38 +32640,6 @@
 6	cela	cela	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Dem	2	obl:arg	_	_
 7	?	?	PUNCT	_	_	2	punct	_	_
 
-# sent_id = GSD_fr-ud-train_09783
-# text = Elle sous-entend au contraire un dynamisme, un changement et à ce titre l'analogie avec une roue qui tourne (N.B : sur quel axe ?
-1	Elle	il	PRON	_	Gender=Fem|Number=Sing|Person=3|PronType=Prs	2	nsubj	_	wordform=elle
-2	sous-entend	sous-entendre	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-3-4	au	_	_	_	_	_	_	_	_
-3	à	à	ADP	_	_	2	advmod	_	ExtPos=ADV|Idiom=Yes
-4	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	3	fixed	_	InIdiom=Yes
-5	contraire	contraire	NOUN	_	Gender=Masc|Number=Sing	3	fixed	_	InIdiom=Yes
-6	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	7	det	_	_
-7	dynamisme	dynamisme	NOUN	_	Gender=Masc|Number=Sing	2	obj	_	SpaceAfter=No
-8	,	,	PUNCT	_	_	10	punct	_	_
-9	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
-10	changement	changement	NOUN	_	Gender=Masc|Number=Sing	7	conj	_	_
-11	et	et	CCONJ	_	_	16	cc	_	_
-12	à	à	ADP	_	_	14	case	_	_
-13	ce	ce	DET	_	Gender=Masc|Number=Sing|PronType=Dem	14	det	_	_
-14	titre	titre	NOUN	_	Gender=Masc|Number=Sing	16	nmod	_	_
-15	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	16	det	_	SpaceAfter=No
-16	analogie	analogie	NOUN	_	Gender=Fem|Number=Sing	7	conj	_	_
-17	avec	avec	ADP	_	_	19	case	_	_
-18	une	un	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	19	det	_	_
-19	roue	roue	NOUN	_	Gender=Fem|Number=Sing	16	nmod	_	_
-20	qui	qui	PRON	_	PronType=Rel	21	nsubj	_	_
-21	tourne	tourner	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	19	acl:relcl	_	ClauseType=Int
-22	(	(	PUNCT	_	_	23	punct	_	SpaceAfter=No
-23	N.B	N.B	ADV	_	_	27	advmod	_	_
-24	:	:	PUNCT	_	_	23	punct	_	_
-25	sur	sur	ADP	_	_	27	case	_	_
-26	quel	quel	DET	_	Gender=Masc|Number=Sing|PronType=Int	21|27|27	cue:wh|cue:wh|det	_	_
-27	axe	axe	NOUN	_	Gender=Masc|Number=Sing	21	obl:mod	_	PhraseType=Int
-28	?	?	PUNCT	_	_	27	punct	_	_
-
 # sent_id = GSD_fr-ud-train_09758
 # text = Il a également publié plusieurs ouvrages dont Organizational Learning and Competitive Advantage (1996), avec Amy Edmondson, professeur à la Harvard Business School, Gouvernement d'entreprise : Débats théoriques et pratiques (2001), avec Karine Le Joly, Corporate and Organizational Identities (2002), avec Guillaume Soenen ainsi que Peut-on former les dirigeants ?
 1	Il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	wordform=il
@@ -33233,56 +33124,6 @@
 1	Quel	quel	DET	_	Gender=Masc|Number=Sing|PronType=Int	2|2	cue:wh|det	_	wordform=quel
 2	socialisme	socialisme	NOUN	_	Gender=Masc|Number=Sing	0	root	_	ClauseType=Int|PhraseType=Int
 3	?	?	PUNCT	_	_	2	punct	_	_
-
-# sent_id = GSD_fr-ud-train_08644
-# text = N'oublions pas à quel point, dans le passé, beaucoup ont été portés à parler de la fin des cultures et des civilisations, avec l'arrivée de l'imprimerie, ou de l'électricité, ou de l'automobile.
-1	N'	ne	ADV	_	Polarity=Neg	2	advmod	_	SpaceAfter=No|wordform=n'
-2	oublions	oublier	VERB	_	Mood=Imp|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin	15	parataxis	_	ClauseType=Int
-3	pas	pas	ADV	_	Polarity=Neg	2	advmod	_	_
-4	à	à	ADP	_	_	6	case	_	_
-5	quel	quel	DET	_	Gender=Masc|Number=Sing|PronType=Int	2|6|6	cue:wh|cue:wh|det	_	_
-6	point	point	NOUN	_	Gender=Masc|Number=Sing	2	obl:arg	_	PhraseType=Int|SpaceAfter=No
-7	,	,	PUNCT	_	_	2	punct	_	_
-8	dans	dans	ADP	_	_	10	case	_	_
-9	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
-10	passé	passé	NOUN	_	Gender=Masc|Number=Sing	15	obl:mod	_	SpaceAfter=No
-11	,	,	PUNCT	_	_	10	punct	_	_
-12	beaucoup	beaucoup	ADV	_	_	15	nsubj:pass	_	ExtPos=PRON
-13	ont	avoir	AUX	_	Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	15	aux:tense	_	_
-14	été	être	AUX	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	15	aux:pass	_	_
-15	portés	porter	VERB	_	Gender=Masc|Number=Plur|Tense=Past|VerbForm=Part	0	root	_	_
-16	à	à	ADP	_	_	17	mark	_	_
-17	parler	parler	VERB	_	VerbForm=Inf	15	xcomp	_	Subject=SubjRaising
-18	de	de	ADP	_	_	20	case	_	_
-19	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	20	det	_	_
-20	fin	fin	NOUN	_	Gender=Fem|Number=Sing	17	obl:arg	_	_
-21-22	des	_	_	_	_	_	_	_	_
-21	de	de	ADP	_	_	23	case	_	_
-22	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	23	det	_	_
-23	cultures	culture	NOUN	_	Gender=Fem|Number=Plur	20	nmod	_	_
-24	et	et	CCONJ	_	_	27	cc	_	_
-25-26	des	_	_	_	_	_	_	_	_
-25	de	de	ADP	_	_	27	case	_	_
-26	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	27	det	_	_
-27	civilisations	civilisation	NOUN	_	Gender=Fem|Number=Plur	23	conj	_	SpaceAfter=No
-28	,	,	PUNCT	_	_	31	punct	_	_
-29	avec	avec	ADP	_	_	31	case	_	_
-30	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	31	det	_	SpaceAfter=No
-31	arrivée	arrivée	NOUN	_	Gender=Fem|Number=Sing	20	nmod	_	_
-32	de	de	ADP	_	_	34	case	_	_
-33	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	34	det	_	SpaceAfter=No
-34	imprimerie	imprimerie	NOUN	_	Gender=Fem|Number=Sing	31	nmod	_	SpaceAfter=No
-35	,	,	PUNCT	_	_	39	punct	_	_
-36	ou	ou	CCONJ	_	_	39	cc	_	_
-37	de	de	ADP	_	_	39	case	_	_
-38	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	39	det	_	SpaceAfter=No
-39	électricité	électricité	NOUN	_	Gender=Fem|Number=Sing	34	conj	_	SpaceAfter=No
-40	,	,	PUNCT	_	_	44	punct	_	_
-41	ou	ou	CCONJ	_	_	44	cc	_	_
-42	de	de	ADP	_	_	44	case	_	_
-43	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	44	det	_	SpaceAfter=No
-44	automobile	automobile	NOUN	_	Gender=Fem|Number=Sing	34	conj	_	SpaceAfter=No
-45	.	.	PUNCT	_	_	15	punct	_	_
 
 # sent_id = GSD_fr-ud-train_08641
 # text = Quelle peut être la taille des blocs de Jordan des matrices nilpotentes qui commutent avec la matrice donnée A ?
@@ -34183,17 +34024,6 @@
 8	étoiles	étoile	NOUN	_	Gender=Fem|Number=Plur	5	obj	_	_
 9	?	?	PUNCT	_	_	2	punct	_	_
 
-# sent_id = GSD_fr-ud-train_06527
-# text = Théo dans Un père pour quoi faire ?
-1	Théo	Théo	PROPN	_	_	0	root	_	ClauseType=Int
-2	dans	dans	ADP	_	_	4	case	_	_
-3	Un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	4	det	_	wordform=un
-4	père	père	NOUN	_	Gender=Masc|Number=Sing	1	nmod	_	_
-5	pour	pour	ADP	_	_	7	mark	_	_
-6	quoi	quoi	PRON	_	Person=3|PronType=Int	1|7	cue:wh|obj	_	PhraseType=Int
-7	faire	faire	VERB	_	VerbForm=Inf	4	acl	_	Subject=Generic
-8	?	?	PUNCT	_	_	4	punct	_	_
-
 # sent_id = GSD_fr-ud-train_06470
 # text = J'ai enfin compris comment faire des photos sans le mode automatique avec le cours d'Alexandre qui est en plus très sympathique.
 1	J'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	4	nsubj	_	SpaceAfter=No|wordform=j'
@@ -34510,33 +34340,6 @@
 21	international	international	ADJ	_	Gender=Masc|Number=Sing	20	amod	_	_
 22	?	?	PUNCT	_	_	6	punct	_	_
 
-# sent_id = GSD_fr-ud-train_05645
-# text = « Parce que si vous voulez devenir français, il faut montrer votre volonté de vous intégrer », a-t-il ajouté ».
-1	«	«	PUNCT	_	_	11	punct	_	_
-2	Parce	parce	ADV	_	_	11	mark	_	ExtPos=SCONJ|Idiom=Yes|wordform=parce
-3	que	que	SCONJ	_	_	2	fixed	_	InIdiom=Yes
-4	si	si	SCONJ	_	_	6	mark	_	_
-5	vous	il	PRON	_	Number=Plur|Person=2|PronType=Prs	6	nsubj	_	_
-6	voulez	vouloir	VERB	_	Mood=Ind|Number=Plur|Person=2|Tense=Pres|VerbForm=Fin	11	advcl	_	_
-7	devenir	devenir	VERB	_	VerbForm=Inf	6	xcomp	_	Subject=SubjRaising
-8	français	français	ADJ	_	Gender=Masc	7	xcomp	_	SpaceAfter=No
-9	,	,	PUNCT	_	_	6	punct	_	_
-10	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	11	expl:subj	_	_
-11	faut	falloir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	22	advcl	_	_
-12	montrer	montrer	VERB	_	VerbForm=Inf	11	ccomp	_	Subject=Generic
-13	votre	son	DET	_	Number=Sing|Number[psor]=Plur|Person[psor]=2|Poss=Yes|PronType=Prs	14	det	_	_
-14	volonté	volonté	NOUN	_	Gender=Fem|Number=Sing	12	obj	_	_
-15	de	de	ADP	_	_	17	mark	_	_
-16	vous	le	PRON	_	Number=Plur|Person=2|PronType=Prs	17	obj	_	_
-17	intégrer	intégrer	VERB	_	VerbForm=Inf	14	acl	_	Subject=SubjRaising
-18	»	»	PUNCT	_	_	11	punct	_	SpaceAfter=No
-19	,	,	PUNCT	_	_	11	punct	_	_
-20	a	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	22	aux:tense	_	SpaceAfter=No
-21	-t-il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	22|22	cue:mark|nsubj	_	wordform=il
-22	ajouté	ajouter	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	0	root	_	ClauseType=Int
-23	»	»	PUNCT	_	_	22	punct	_	SpaceAfter=No
-24	.	.	PUNCT	_	_	22	punct	_	_
-
 # sent_id = GSD_fr-ud-train_05640
 # text = D'où viennent-ils, quel est leur itinéraire et où écoulent-ils leurs produits ?
 1	D'	de	ADP	_	_	2	case	_	SpaceAfter=No|wordform=d'
@@ -34724,51 +34527,6 @@
 59	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	60	det	_	_
 60	siens	sien	PRON	_	Gender=Masc|Number=Plur|PronType=Prs	57	obl:mod	_	SpaceAfter=No
 61	.	.	PUNCT	_	_	6	punct	_	_
-
-# sent_id = GSD_fr-ud-train_05325
-# text = La Grèce doit se hâter de finir ces négociations d'ici la fin de la semaine, a-t-il déclaré aux journalistes, indiquant que le Parlement ne prendrait aucune mesure formelle avant la fin des pourparlers.
-1	La	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	2	det	_	wordform=la
-2	Grèce	Grèce	PROPN	_	Gender=Fem|Number=Sing	3	nsubj	_	_
-3	doit	devoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-4	se	se	PRON	_	Person=3|PronType=Prs|Reflex=Yes	5	expl:pv	_	_
-5	hâter	hâter	VERB	_	VerbForm=Inf	3	xcomp	_	Subject=SubjRaising
-6	de	de	ADP	_	_	7	mark	_	_
-7	finir	finir	VERB	_	VerbForm=Inf	5	xcomp	_	Subject=SubjRaising
-8	ces	ce	DET	_	Number=Plur|PronType=Dem	9	det	_	_
-9	négociations	négociation	NOUN	_	Gender=Fem|Number=Plur	7	obj	_	_
-10	d'	de	ADP	_	_	13	case	_	ExtPos=ADP|Idiom=Yes|SpaceAfter=No
-11	ici	ici	ADV	_	_	10	fixed	_	InIdiom=Yes
-12	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	13	det	_	_
-13	fin	fin	NOUN	_	Gender=Fem|Number=Sing	7	obl:mod	_	_
-14	de	de	ADP	_	_	16	case	_	_
-15	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	16	det	_	_
-16	semaine	semaine	NOUN	_	Gender=Fem|Number=Sing	13	nmod	_	SpaceAfter=No
-17	,	,	PUNCT	_	_	20	punct	_	_
-18	a	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	aux:tense	_	SpaceAfter=No
-19	-t-il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	20|20	cue:mark|nsubj	_	wordform=il
-20	déclaré	déclarer	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	3	parataxis	_	ClauseType=Int
-21-22	aux	_	_	_	_	_	_	_	_
-21	à	à	ADP	_	_	23	case	_	_
-22	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	23	det	_	_
-23	journalistes	journaliste	NOUN	_	Gender=Masc|Number=Plur	20	obl:arg	_	SpaceAfter=No
-24	,	,	PUNCT	_	_	25	punct	_	_
-25	indiquant	indiquer	VERB	_	Tense=Pres|VerbForm=Part	20	advcl	_	Subject=Instantiated
-26	que	que	SCONJ	_	_	30	mark	_	_
-27	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	28	det	_	_
-28	Parlement	parlement	NOUN	_	Gender=Masc|Number=Sing	30	nsubj	_	wordform=parlement
-29	ne	ne	ADV	_	Polarity=Neg	30	advmod	_	_
-30	prendrait	prendre	VERB	_	Mood=Cnd|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	25	ccomp	_	_
-31	aucune	aucun	DET	_	Gender=Fem|Number=Sing|PronType=Neg	32	det	_	_
-32	mesure	mesure	NOUN	_	Gender=Fem|Number=Sing	30	obj	_	_
-33	formelle	formel	ADJ	_	Gender=Fem|Number=Sing	32	amod	_	_
-34	avant	avant	ADP	_	_	36	case	_	_
-35	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	36	det	_	_
-36	fin	fin	NOUN	_	Gender=Fem|Number=Sing	30	obl:mod	_	_
-37-38	des	_	_	_	_	_	_	_	_
-37	de	de	ADP	_	_	39	case	_	_
-38	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	39	det	_	_
-39	pourparlers	pourparler	NOUN	_	Gender=Masc|Number=Plur	36	nmod	_	SpaceAfter=No
-40	.	.	PUNCT	_	_	3	punct	_	_
 
 # sent_id = GSD_fr-ud-train_05235
 # text = On manque cruellement d'argent alors qu'on sait comment arrêter l'épidémie.
@@ -35099,16 +34857,6 @@
 4	-t-il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	3|3	cue:mark|nsubj	_	wordform=il
 5	?	?	PUNCT	_	_	3	punct	_	_
 
-# sent_id = GSD_fr-ud-train_04613
-# text = Peut être était-ce un loup ?
-1	Peut	peut-être	ADV	_	Typo=Yes	6	advmod	_	CorrectForm=peut-être
-2	être	_	X	_	_	1	goeswith	_	_
-3	était	être	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	6	cop	_	SpaceAfter=No
-4	-ce	ce	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Dem	6|6	cue:mark|nsubj	_	wordform=ce
-5	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	6	det	_	_
-6	loup	loup	NOUN	_	Gender=Masc|Number=Sing	0	root	_	ClauseType=Int
-7	?	?	PUNCT	_	_	6	punct	_	_
-
 # sent_id = GSD_fr-ud-train_04578
 # text = Depuis son début en 1987 Handford a produit un total de six Où est Charlie ?
 1	Depuis	depuis	ADP	_	_	3	case	_	wordform=depuis
@@ -35290,13 +35038,6 @@
 15	mars	mars	NOUN	_	Gender=Masc|Number=Sing	14	nmod	_	_
 16	2009	2009	NUM	_	Number=Plur	15	nmod	_	_
 17	?	?	PUNCT	_	_	6	punct	_	_
-
-# sent_id = GSD_fr-ud-train_04378
-# text = On comprend pourquoi.
-1	On	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	2	nsubj	_	wordform=on
-2	comprend	comprendre	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	ClauseType=Int
-3	pourquoi	pourquoi	ADV	_	PronType=Int	2|2	advmod|cue:wh	_	PhraseType=Int|SpaceAfter=No
-4	.	.	PUNCT	_	_	2	punct	_	_
 
 # sent_id = GSD_fr-ud-train_04302
 # text = Un traité mineur (Massekhet Kouthim) confirme leur acceptation partielle : « quand pourront-ils être reçus dans la communauté juive ?
@@ -36787,73 +36528,6 @@
 11	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	10	fixed	_	InIdiom=Yes
 12	juste	juste	ADJ	_	Gender=Masc|Number=Sing	10	fixed	_	InIdiom=Yes|SpaceAfter=No
 13	.	.	PUNCT	_	_	3	punct	_	_
-
-# sent_id = GSD_fr-ud-train_01586
-# text = Instigateur du projet "dreadnought", il devient aussi le premier à en récolter les fruits : en 1914, il est le commandant suprême d'une flotte britannique qui compte déjà 31 "dreadnoughts", dont il imagina le nom à partir de l'expression "which dread nought" ("qui ne redoute rien").
-1	Instigateur	instigateur	NOUN	_	Gender=Masc|Number=Sing	10	advcl	_	wordform=instigateur
-2-3	du	_	_	_	_	_	_	_	_
-2	de	de	ADP	_	_	4	case	_	_
-3	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	4	det	_	_
-4	projet	projet	NOUN	_	Gender=Masc|Number=Sing	1	nmod	_	_
-5	"	"	PUNCT	_	_	6	punct	_	SpaceAfter=No
-6	dreadnought	dreadnought	NOUN	_	Gender=Masc|Number=Sing	4	appos	_	Quoted=Yes|SpaceAfter=No
-7	"	"	PUNCT	_	_	6	punct	_	SpaceAfter=No
-8	,	,	PUNCT	_	_	1	punct	_	_
-9	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	10	nsubj	_	_
-10	devient	devenir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-11	aussi	aussi	ADV	_	_	10	advmod	_	_
-12	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
-13	premier	premier	ADJ	_	Gender=Masc|Number=Sing	10	xcomp	_	_
-14	à	à	ADP	_	_	16	mark	_	_
-15	en	en	PRON	_	Person=3|PronType=Prs	18	nmod	_	_
-16	récolter	récolter	VERB	_	VerbForm=Inf	13	xcomp	_	Subject=SubjRaising
-17	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	18	det	_	_
-18	fruits	fruit	NOUN	_	Gender=Masc|Number=Plur	16	obj	_	_
-19	:	:	PUNCT	_	_	26	punct	_	_
-20	en	en	ADP	_	_	21	case	_	_
-21	1914	1914	NUM	_	Number=Plur	26	obl:mod	_	SpaceAfter=No
-22	,	,	PUNCT	_	_	21	punct	_	_
-23	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	26	nsubj	_	_
-24	est	être	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	26	cop	_	_
-25	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	26	det	_	_
-26	commandant	commandant	NOUN	_	Gender=Masc|Number=Sing	10	parataxis	_	Quoted=Yes
-27	suprême	suprême	ADJ	_	Gender=Masc|Number=Sing	26	amod	_	_
-28	d'	de	ADP	_	_	30	case	_	SpaceAfter=No
-29	une	un	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	30	det	_	_
-30	flotte	flotte	NOUN	_	Gender=Fem|Number=Sing	26	nmod	_	_
-31	britannique	britannique	ADJ	_	Gender=Fem|Number=Sing	30	amod	_	_
-32	qui	qui	PRON	_	PronType=Rel	33	nsubj	_	_
-33	compte	compter	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	30	acl:relcl	_	_
-34	déjà	déjà	ADV	_	_	33	advmod	_	_
-35	31	31	NUM	_	Number=Plur	37	nummod	_	_
-36	"	"	PUNCT	_	_	37	punct	_	SpaceAfter=No
-37	dreadnoughts	dreadnought	NOUN	_	Gender=Masc|Number=Plur	33	obj	_	SpaceAfter=No
-38	"	"	PUNCT	_	_	37	punct	_	SpaceAfter=No
-39	,	,	PUNCT	_	_	40	punct	_	_
-40	dont	dont	PRON	_	PronType=Rel	44	nmod	_	_
-41	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	42	nsubj	_	_
-42	imagina	imaginer	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	37	acl:relcl	_	_
-43	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	44	det	_	_
-44	nom	nom	NOUN	_	Gender=Masc|Number=Sing	42	obj	_	_
-45	à	à	ADP	_	_	42	advmod	_	ExtPos=ADV|Idiom=Yes
-46	partir	partir	VERB	_	VerbForm=Inf	45	fixed	_	InIdiom=Yes
-47	de	de	ADP	_	_	49	case	_	_
-48	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	49	det	_	SpaceAfter=No
-49	expression	expression	NOUN	_	Gender=Fem|Number=Sing	45	obl:arg	_	_
-50	"	"	PUNCT	_	_	51	punct	_	SpaceAfter=No
-51	which	which	X	_	Foreign=Yes	49	appos	_	ExtPos=PROPN|Lang=en|Quoted=Yes|Title=Yes
-52	dread	dread	X	_	Foreign=Yes	51	flat:foreign	_	InTitle=Yes|Lang=en
-53	nought	nought	X	_	Foreign=Yes	51	flat:foreign	_	InTitle=Yes|Lang=en|SpaceAfter=No
-54	"	"	PUNCT	_	_	51	punct	_	_
-55	(	(	PUNCT	_	_	59	punct	_	SpaceAfter=No
-56	"	"	PUNCT	_	_	59	punct	_	SpaceAfter=No
-57	qui	qui	PRON	_	Person=3|PronType=Int	59|59	cue:wh|nsubj	_	InTitle=Yes|PhraseType=Int
-58	ne	ne	ADV	_	Polarity=Neg	59	advmod	_	InTitle=Yes
-59	redoute	redouter	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	51	appos	_	ClauseType=Int|ExtPos=PROPN|Title=Yes
-60	rien	rien	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Neg	59	obj	_	InTitle=Yes|SpaceAfter=No
-61	"	"	PUNCT	_	_	59	punct	_	SpaceAfter=No
-62	)	)	PUNCT	_	_	59	punct	_	SpaceAfter=No
-63	.	.	PUNCT	_	_	10	punct	_	_
 
 # sent_id = GSD_fr-ud-train_01581
 # text = Il est toujours dix pas en avant des autres à cause de sa conscience, ce qui peut le conduire à rejeter une femme après l'avoir rencontrée parce qu'il sait où tout cela va mener, alors pourquoi commencer ?
@@ -38692,77 +38366,6 @@
 32	fois	fois	NOUN	_	Gender=Fem|Number=Plur	30	nmod	_	SpaceAfter=No
 33	.	.	PUNCT	_	_	11	punct	_	_
 
-# text = ParisStories_il y avait d'abord, euh, un jour, euh, enfin quelques jours avant le tournage, on devait aller, euh, dans le studio pour, euh, essayer le et notre costume euh avec la costumière, et euh, pour qu'ils regardent, euh, nos cheveux pour voir, euh, quelle coiffure ils pouvaient nous faire.
-# sent_id = ParisStories_2019_journeeTournage_4
-# sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/ab034f56f11fa10a0be51db97571baf061145be8
-1	il	il	PRON	_	_	3	expl:subj	_	_
-2	y	y	PRON	_	Person=3|PronType=Prs	3	expl	_	_
-3	avait	avoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	22	reparandum	_	_
-4	d'	de	ADP	_	_	5	case	_	SpaceAfter=No
-5	abord	abord	NOUN	_	Gender=Masc|Number=Sing	3	obl:mod	_	SpaceAfter=No
-6	,	,	PUNCT	_	_	22	punct	_	_
-7	euh	euh	INTJ	_	_	22	discourse	_	SpaceAfter=No
-8	,	,	PUNCT	_	_	7	punct	_	_
-9	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	10	det	_	_
-10	jour	jour	NOUN	_	Gender=Masc|Number=Sing	16	reparandum	_	SpaceAfter=No
-11	,	,	PUNCT	_	_	16	punct	_	_
-12	euh	euh	INTJ	_	_	16	discourse	_	SpaceAfter=No
-13	,	,	PUNCT	_	_	12	punct	_	_
-14	enfin	enfin	ADV	_	_	16	discourse	_	ExtPos=INTJ
-15	quelques	quelque	DET	_	Number=Plur|PronType=Ind	16	det	_	_
-16	jours	jours	NOUN	_	Gender=Masc|Number=Plur	22	obl:mod	_	_
-17	avant	avant	ADP	_	_	19	case	_	_
-18	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	19	det	_	_
-19	tournage	_	NOUN	_	Gender=Masc|Number=Sing	16	nmod	_	SpaceAfter=No
-20	,	,	PUNCT	_	_	16	punct	_	_
-21	on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	22	nsubj	_	_
-22	devait	devoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	0	root	_	_
-23	aller	aller	VERB	_	VerbForm=Inf	22	xcomp	_	SpaceAfter=No|Subject=SubjRaising
-24	,	,	PUNCT	_	_	29	punct	_	_
-25	euh	euh	INTJ	_	_	29	discourse	_	SpaceAfter=No
-26	,	,	PUNCT	_	_	25	punct	_	_
-27	dans	dans	ADP	_	_	29	case	_	_
-28	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	29	det	_	_
-29	studio	studio	NOUN	_	Gender=Masc|Number=Sing	23	obl:arg	_	_
-30	pour	pour	ADP	_	_	34	mark	_	SpaceAfter=No
-31	,	,	PUNCT	_	_	34	punct	_	_
-32	euh	euh	INTJ	_	_	34	discourse	_	SpaceAfter=No
-33	,	,	PUNCT	_	_	32	punct	_	_
-34	essayer	essayer	VERB	_	VerbForm=Inf	23	advcl	_	Subject=NoRaising
-35	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	37	reparandum	_	_
-36	et	et	CCONJ	_	_	37	cc	_	_
-37	notre	son	DET	_	Number=Sing|Number[psor]=Plur|Person=3|Person[psor]=1|PronType=Prs	38	det	_	_
-38	costume	costume	NOUN	_	Gender=Masc|Number=Sing	34	obj	_	_
-39	euh	euh	INTJ	_	_	42	discourse	_	_
-40	avec	avec	ADP	_	_	42	case	_	_
-41	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	42	det	_	_
-42	costumière	costumier	NOUN	_	Gender=Fem|Number=Sing	34	obl:mod	_	SpaceAfter=No
-43	,	,	PUNCT	_	_	50	punct	_	_
-44	et	et	CCONJ	_	_	50	cc	_	_
-45	euh	euh	INTJ	_	_	50	discourse	_	SpaceAfter=No
-46	,	,	PUNCT	_	_	50	punct	_	_
-47	pour	pour	ADP	_	_	50	mark	_	_
-48	qu'	que	SCONJ	_	_	50	mark	_	SpaceAfter=No
-49	ils	il	PRON	_	Gender=Masc|Number=Plur|Person=3|PronType=Prs	50	nsubj	_	_
-50	regardent	regarder	VERB	_	Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	34	conj	_	ClauseType=Int|SpaceAfter=No
-51	,	,	PUNCT	_	_	55	punct	_	_
-52	euh	euh	INTJ	_	_	55	discourse	_	SpaceAfter=No
-53	,	,	PUNCT	_	_	52	punct	_	_
-54	nos	son	DET	_	Number=Plur|Number[psor]=Plur|Person=3|Person[psor]=1|PronType=Prs	55	det	_	_
-55	cheveux	_	NOUN	_	Gender=Masc|Number=Plur	50	obj	_	_
-56	pour	pour	ADP	_	_	57	mark	_	_
-57	voir	voir	VERB	_	VerbForm=Inf	55	acl	_	SpaceAfter=No|Subject=SubjRaising
-58	,	,	PUNCT	_	_	62	punct	_	_
-59	euh	euh	INTJ	_	_	62	discourse	_	SpaceAfter=No
-60	,	,	PUNCT	_	_	59	punct	_	_
-61	quelle	quel	DET	_	Gender=Fem|Number=Sing|Person=3|PronType=Int	50|62|62	cue:wh|cue:wh|det	_	_
-62	coiffure	coiffure	NOUN	_	Gender=Fem|Number=Sing	57	obj	_	PhraseType=Int
-63	ils	il	PRON	_	Gender=Masc|Number=Plur|Person=3|PronType=Prs	64	nsubj	_	_
-64	pouvaient	pouvoir	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	62	acl	_	_
-65	nous	lui	PRON	_	_	66	iobj	_	_
-66	faire	faire	VERB	_	VerbForm=Inf	64	xcomp	_	SpaceAfter=No|Subject=SubjRaising
-67	.	.	PUNCT	_	_	22	punct	_	_
-
 # text = ParisStories_euh, donc, euh, enfin franchement c'était, c'était vraiment vraiment cool parce que enfin, ça, ça m'a permis de découvrir euh le monde du cinéma, comment ça se passait, euh, comment on tournait un film.
 # sent_id = ParisStories_2019_journeeTournage_2
 # sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/ab034f56f11fa10a0be51db97571baf061145be8
@@ -38816,63 +38419,6 @@
 47	film	film	NOUN	_	Gender=Masc|Number=Sing	45	obj	_	SpaceAfter=No
 48	.	.	PUNCT	_	_	16	punct	_	_
 
-# text = ParisStories_mais à côté de l'entrée de la rue il y a quelques hommes, qui euh hum, qui étaient euh, qui restaient ici et euh qui qui étaient en train de boire, enfin qui euh, qui avaient l'air pas très euh, pas très amicaux.
-# sent_id = ParisStories_2019_histoireDeBanlieue_17
-# sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/d50bf89027694d4326915ff6e90cc525b2e3ea00
-# speaker = non_native
-1	mais	mais	CCONJ	_	_	12	cc	_	_
-2	à	à	ADP	_	_	3	case	_	_
-3	côté	côté	NOUN	_	Gender=Masc|Number=Sing	12	obl:mod	_	_
-4	de	de	ADP	_	_	6	case	_	_
-5	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	6	det	_	SpaceAfter=No
-6	entrée	entrée	NOUN	_	Gender=Fem|Number=Sing	3	nmod	_	_
-7	de	de	ADP	_	_	9	case	_	_
-8	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	9	det	_	_
-9	rue	rue	NOUN	_	Gender=Fem|Number=Sing	6	nmod	_	_
-10	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	12	expl:subj	_	_
-11	y	y	PRON	_	Person=3|PronType=Prs	12	expl	_	_
-12	a	avoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
-13	quelques	quelque	DET	_	Number=Plur|PronType=Ind	14	det	_	_
-14	hommes	homme	NOUN	_	Gender=Masc|Number=Plur	12	obj	_	SpaceAfter=No
-15	,	,	PUNCT	_	_	25	punct	_	_
-16	qui	qui	PRON	_	_	25	reparandum	_	_
-17	euh	euh	INTJ	_	_	21	discourse	_	_
-18	hum	hum	INTJ	_	_	21	discourse	_	SpaceAfter=No
-19	,	,	PUNCT	_	_	18	punct	_	_
-20	qui	qui	PRON	_	_	21	nsubj	_	_
-21	étaient	être	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	25	reparandum	_	_
-22	euh	euh	INTJ	_	_	25	discourse	_	SpaceAfter=No
-23	,	,	PUNCT	_	_	22	punct	_	_
-24	qui	qui	PRON	_	PronType=Int	25|25	cue:wh|nsubj	_	PhraseType=Int
-25	restaient	rester	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	14	acl	_	ClauseType=Int
-26	ici	ici	ADV	_	_	25	advmod	_	_
-27	et	et	CCONJ	_	_	31	cc	_	_
-28	euh	euh	INTJ	_	_	31	discourse	_	_
-29	qui	qui	PRON	_	_	30	reparandum	_	_
-30	qui	qui	PRON	_	_	31	nsubj	_	_
-31	étaient	être	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	42	reparandum	_	_
-32	en	en	ADP	_	_	33	case	_	_
-33	train	train	NOUN	_	Gender=Masc|Number=Sing	31	xcomp	_	_
-34	de	de	ADP	_	_	35	mark	_	_
-35	boire	boire	VERB	_	VerbForm=Inf	33	acl	_	SpaceAfter=No|Subject=SubjRaising
-36	,	,	PUNCT	_	_	42	punct	_	_
-37	enfin	enfin	ADV	_	_	42	discourse	_	ExtPos=INTJ|wordform=fin
-38	qui	qui	PRON	_	PronType=Int	41	reparandum	_	ClauseType=Int|PhraseType=Int
-39	euh	euh	INTJ	_	_	41	discourse	_	SpaceAfter=No
-40	,	,	PUNCT	_	_	39	punct	_	_
-41	qui	qui	PRON	_	PronType=Int	42|42	cue:wh|nsubj	_	PhraseType=Int
-42	avaient	avoir	VERB	_	Mood=Ind|Number=Plur|Person=3|Tense=Imp|VerbForm=Fin	25	conj	_	ClauseType=Int
-43	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	44	det	_	SpaceAfter=No
-44	air	air	NOUN	_	Gender=Masc|Number=Sing	42	obj:lvc	_	_
-45	pas	pas	ADV	_	Polarity=Neg	46	advmod	_	_
-46	très	très	ADV	_	_	51	reparandum	_	_
-47	euh	euh	INTJ	_	_	51	discourse	_	SpaceAfter=No
-48	,	,	PUNCT	_	_	47	punct	_	_
-49	pas	pas	ADV	_	Polarity=Neg	50	advmod	_	_
-50	très	très	ADV	_	_	51	advmod	_	_
-51	amicaux	amical	ADJ	_	Gender=Masc|Number=Plur	44	amod	_	SpaceAfter=No
-52	.	.	PUNCT	_	_	12	punct	_	_
-
 # sent_id = ParisStories_ParisStories_2019_experienceFac_52
 # text = bon j'y suis pas allée, euh je sais plus pourquoi.
 # sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/7fd8e2485c6f0ac8a57ee9edde90ab97c3e3fe8c
@@ -38917,75 +38463,6 @@
 21	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	22	det	_	_
 22	métro	métro	NOUN	_	Gender=Masc|Number=Sing	20	obj	_	_
 23	?	?	PUNCT	_	_	2	punct	_	_
-
-# sent_id = ParisStories_ParisStories_2019_concoursEquitation_45
-# text = moi, j'avais une immense ju~ jupe sur moi, qui lui couvrait toutes les fesses.
-# sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/5299e17ac172ff33449605a94034e33a5bb88690
-1	moi	lui	PRON	_	Number=Sing|Person=1|PronType=Prs	4	dislocated	_	SpaceAfter=No
-2	,	,	PUNCT	_	_	1	punct	_	_
-3	j'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	4	nsubj	_	SpaceAfter=No
-4	avais	avoir	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Imp|VerbForm=Fin	0	root	_	_
-5	une	un	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	7	det	_	_
-6	immense	immense	ADJ	_	Gender=Fem|Number=Sing	7	amod	_	_
-7	ju~	ju~	NOUN	_	Gender=Fem|Number=Sing	8	reparandum	_	_
-8	jupe	jupe	NOUN	_	Gender=Fem|Number=Sing	4	obj	_	_
-9	sur	sur	ADP	_	_	10	case	_	_
-10	moi	lui	PRON	_	Number=Sing|Person=1|PronType=Prs	8	nmod	_	SpaceAfter=No
-11	,	,	PUNCT	_	_	14	punct	_	_
-12	qui	qui	PRON	_	PronType=Int	14|14	cue:wh|nsubj	_	PhraseType=Int
-13	lui	lui	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	14	iobj	_	_
-14	couvrait	couvrir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	8	acl	_	ClauseType=Int
-15	toutes	tout	ADJ	_	Gender=Fem|Number=Plur	17	amod	_	_
-16	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	17	det	_	_
-17	fesses	fesse	NOUN	_	Gender=Fem|Number=Plur	14	obj	_	SpaceAfter=No
-18	.	.	PUNCT	_	_	4	punct	_	_
-
-# sent_id = ParisStories_ParisStories_2019_concoursEquitation_38
-# text = donc moi en fait, moi je crois ce que j'avais fait, j'avait acheté un, il y avait un genre de, c'est un chapeau en mousse de pirate qu'on lui a collé sur la tête.
-# sound_url = https://api.nakala.fr/data/10.34847/nkl.d6eb01m0/5299e17ac172ff33449605a94034e33a5bb88690
-1	donc	donc	ADV	_	_	8	advmod	_	_
-2	moi	lui	PRON	_	Number=Sing|Person=1|PronType=Prs	6	reparandum	_	_
-3	en	en	ADP	_	_	4	case	_	_
-4	fait	fait	NOUN	_	Gender=Masc|Number=Sing	6	discourse	_	SpaceAfter=No
-5	,	,	PUNCT	_	_	4	punct	_	_
-6	moi	lui	PRON	_	Number=Sing|Person=1|PronType=Prs	8	dislocated	_	_
-7	je	il	PRON	_	Number=Sing|Person=1|PronType=Prs	8	nsubj	_	_
-8	crois	croire	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	_
-9	ce	ce	PRON	_	_	8	obj	_	_
-10	que	que	PRON	_	PronType=Rel	13	obj	_	_
-11	j'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	13	nsubj	_	SpaceAfter=No
-12	avais	avoir	AUX	_	Mood=Ind|Number=Sing|Person=1|Tense=Imp|VerbForm=Fin	13	aux:tense	_	_
-13	fait	faire	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	28	reparandum	_	SpaceAfter=No
-14	,	,	PUNCT	_	_	28	punct	_	_
-15	j'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	17	nsubj	_	SpaceAfter=No
-16	avait	avoir	AUX	_	Mood=Ind|Number=Sing|Person=1|Tense=Imp|VerbForm=Fin	17	aux:tense	_	_
-17	acheté	acheter	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	28	reparandum	_	_
-18	un	un	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	17	obj	_	SpaceAfter=No
-19	,	,	PUNCT	_	_	28	punct	_	_
-20	il	il	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	22	expl:subj	_	_
-21	y	y	PRON	_	Person=3|PronType=Prs	22	expl	_	_
-22	avait	avoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	28	reparandum	_	_
-23	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	24	det	_	_
-24	genre	genre	NOUN	_	Gender=Masc|Number=Sing	22	obj	_	_
-25	de	de	ADP	_	_	24	dep	_	SpaceAfter=No
-26	,	,	PUNCT	_	_	28	punct	_	_
-27	c'	ce	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Dem	28	nsubj	_	SpaceAfter=No
-28	est	être	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	9	acl:relcl	_	_
-29	un	un	DET	_	Definite=Ind|Gender=Masc|Number=Sing|PronType=Art	30	det	_	_
-30	chapeau	chapeau	NOUN	_	Gender=Masc|Number=Sing	28	xcomp	_	_
-31	en	en	ADP	_	_	32	case	_	_
-32	mousse	mousse	NOUN	_	Gender=Fem|Number=Sing	30	nmod	_	_
-33	de	de	ADP	_	_	34	case	_	_
-34	pirate	pirate	NOUN	_	Gender=Masc|Number=Sing	30	nmod	_	_
-35	qu'	que	PRON	_	PronType=Int	39|39	cue:wh|obj	_	PhraseType=Int|SpaceAfter=No
-36	on	on	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	39	nsubj	_	_
-37	lui	lui	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Prs	39	iobj	_	_
-38	a	avoir	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	39	aux:tense	_	_
-39	collé	coller	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	30	acl	_	ClauseType=Int
-40	sur	sur	ADP	_	_	42	case	_	_
-41	la	le	DET	_	Definite=Def|Gender=Fem|Number=Sing|PronType=Art	42	det	_	_
-42	tête	tête	NOUN	_	Gender=Fem|Number=Sing	39	obl:mod	_	SpaceAfter=No
-43	.	.	PUNCT	_	_	8	punct	_	_
 
 # sent_id = ParTUT_fr_partut-ud-856
 # text = En fait, ce qu'on a fait il y a quelques années c'était d'apprendre comment on introduit clandestinement un labo de biologie moléculaire à Tokyo et de l'utiliser pour tester génétiquement l'ADN d'échantillons de viande de baleine et identifier ce qu'ils étaient vraiment.
@@ -40166,21 +39643,6 @@
 9	réveille-matin	réveille-matin	NOUN	NN	Gender=Masc|Number=Sing	6	obl	_	_
 10	?	?	PUNCT	.	_	6	punct	_	_
 
-# newdoc id = PUD_n02046
-# sent_id = n02046037
-# text = Dans lequel, ce n'est pas très clair.
-# text_en = It is now only unclear, in which one.
-1	Dans	dans	ADP	IN	_	2	case	_	wordform=dans
-2	lequel	lequel	PRON	WP	Gender=Masc|Number=Sing|PronType=Int	9|9	cue:wh|obl	_	PhraseType=Int|SpaceAfter=No
-3	,	,	PUNCT	,	_	2	punct	_	_
-4	ce	ce	PRON	PDEM	PronType=Dem	9	expl:subj	_	_
-5	n'	ne	ADV	RB	Polarity=Neg	9	advmod	_	SpaceAfter=No
-6	est	être	AUX	VBC	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	9	cop	_	_
-7	pas	pas	ADV	RB	Polarity=Neg	9	advmod	_	_
-8	très	très	ADV	RB	_	9	advmod	_	_
-9	clair	clair	ADJ	JJ	Gender=Masc|Number=Sing	0	root	_	ClauseType=Int|SpaceAfter=No
-10	.	.	PUNCT	.	_	9	punct	_	_
-
 # newdoc id = PUD_n02022
 # sent_id = n02022015
 # text = On ne sait pas comment les deux dramaturges auraient travaillé ensemble.
@@ -41289,73 +40751,6 @@
 7	marche	marcher	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	ClauseType=Int|Reported=Yes
 8	pas	pas	ADV	_	Polarity=Neg	7	advmod	_	_
 9	?	?	PUNCT	_	_	7	punct	_	_
-
-# macrosyntax = Rhapsodie_^mais "enfin" "disons" "euh" { j'ai | j'ai } ( d'abord ) "euh" travaillé dans { des "euh" [ comment ESPERLUETTE // ] |
-# sent_id = Rhap_D0005-6
-# speaker = L1
-# text = mais, enfin, disons, euh, j'ai, j'ai d'abord, euh, travaillé dans des, euh, comment…
-1	mais	mais	CCONJ	_	_	10	cc	_	SpaceAfter=No
-2	,	,	PUNCT	_	_	10	punct	_	_
-3	enfin	enfin	ADV	_	_	10	discourse	_	SpaceAfter=No
-4	,	,	PUNCT	_	_	3	punct	_	_
-5	disons	dire	VERB	_	Mood=Imp|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin	10	discourse	_	SpaceAfter=No
-6	,	,	PUNCT	_	_	5	punct	_	_
-7	euh	euh	INTJ	_	_	10	discourse	_	SpaceAfter=No
-8	,	,	PUNCT	_	_	7	punct	_	_
-9	j'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	10	nsubj	_	SpaceAfter=No
-10	ai	avoir	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	19	reparandum	_	SpaceAfter=No
-11	,	,	PUNCT	_	_	19	punct	_	_
-12	j'	il	PRON	_	Number=Sing|Person=1|PronType=Prs	19	nsubj	_	SpaceAfter=No
-13	ai	avoir	AUX	_	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin	19	aux:tense	_	_
-14	d'	de	ADP	_	_	15	case	_	SpaceAfter=No
-15	abord	abord	NOUN	_	Gender=Masc|Number=Sing	19	obl:mod	_	SpaceAfter=No
-16	,	,	PUNCT	_	_	17	punct	_	_
-17	euh	euh	INTJ	_	_	15	discourse	_	SpaceAfter=No
-18	,	,	PUNCT	_	_	19	punct	_	_
-19	travaillé	travailler	VERB	_	Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part	0	root	_	ClauseType=Int
-20	dans	dans	ADP	_	_	25	case	_	_
-21	des	un	DET	_	Definite=Ind|Number=Plur|PronType=Art	25	reparandum	_	SpaceAfter=No
-22	,	,	PUNCT	_	_	23	punct	_	_
-23	euh	euh	INTJ	_	_	21	discourse	_	SpaceAfter=No
-24	,	,	PUNCT	_	_	25	punct	_	_
-25	comment	comment	ADV	_	PronType=Int	19|19	advmod|cue:wh	_	PhraseType=Int|Scrap=Yes|SpaceAfter=No
-26	…	…	PUNCT	_	_	19	punct	_	_
-
-# macrosyntax = Rhapsodie_nous voyons combien tout peut être parfois remis en cause du fait { de l'inconscience des hommes | ^ou du déchaînement des éléments naturels } //
-# sent_id = Rhap_M2004-6
-# text = nous voyons combien tout peut être parfois remis en cause du fait de l'inconscience des hommes ou du déchaînement des éléments naturels.
-1	nous	il	PRON	_	Number=Plur|Person=1|PronType=Prs	2	nsubj	_	_
-2	voyons	voir	VERB	_	Mood=Ind|Number=Plur|Person=1|Tense=Pres|VerbForm=Fin	0	root	_	ClauseType=Int
-3	combien	combien	ADV	_	PronType=Int	2|2	cue:wh|obj	_	PhraseType=Int
-4	tout	tout	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Ind	5	nsubj:pass	_	_
-5	peut	pouvoir	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	acl:relcl	_	_
-6	être	être	AUX	_	VerbForm=Inf	8	aux:pass	_	Subject=SubjRaising
-7	parfois	parfois	ADV	_	_	5	advmod	_	_
-8	remis	remettre	VERB	_	Gender=Masc|Tense=Past|VerbForm=Part	5	xcomp	_	_
-9	en	en	ADP	_	_	10	case	_	_
-10	cause	cause	NOUN	_	Gender=Fem|Number=Sing	8	obl:arg	_	_
-11-12	du	_	_	_	_	_	_	_	_
-11	de	de	ADP	_	_	13	case	_	_
-12	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	13	det	_	_
-13	fait	fait	NOUN	_	Gender=Masc|Number=Sing	5	obl:mod	_	_
-14	de	de	ADP	_	_	16	case	_	_
-15	l'	le	DET	_	Definite=Def|Number=Sing|PronType=Art	16	det	_	SpaceAfter=No
-16	inconscience	inconscience	NOUN	_	Gender=Fem|Number=Sing	13	nmod	_	_
-17-18	des	_	_	_	_	_	_	_	_
-17	de	de	ADP	_	_	19	case	_	_
-18	les	le	DET	_	Definite=Def|Number=Plur|PronType=Art	19	det	_	_
-19	hommes	homme	NOUN	_	Gender=Masc|Number=Plur	16	nmod	_	_
-20	ou	ou	CCONJ	_	_	23	cc	_	_
-21-22	du	_	_	_	_	_	_	_	_
-21	de	de	ADP	_	_	23	case	_	_
-22	le	le	DET	_	Definite=Def|Gender=Masc|Number=Sing|PronType=Art	23	det	_	_
-23	déchaînement	déchaînement	NOUN	_	Gender=Masc|Number=Sing	16	conj	_	_
-24-25	des	_	_	_	_	_	_	_	_
-24	de	de	ADP	_	_	26	case	_	_
-25	les	les	DET	_	_	26	det	_	_
-26	éléments	éléments	NOUN	_	Gender=Masc|Number=Plur	23	nmod	_	_
-27	naturels	naturels	ADJ	_	Gender=Masc|Number=Plur	26	amod	_	SpaceAfter=No
-28	.	.	PUNCT	_	_	2	punct	_	_
 
 # macrosyntax = Rhapsodie_à moins de considérer que tous les maires de droite qui ont été battus étaient foncièrement mauvais < il faut voir dans le résultat { des municipales | ^et des cantonales } { un message fort envoyé à l'exécutif  //+ | message national donc  //+ | ^mais quel message } //
 # sent_id = Rhap_D2013-34
