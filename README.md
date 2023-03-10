@@ -32,7 +32,7 @@ Some changes wrt. the original UD corpora have been made during the identificati
 
 
 ## Splitting
-The whole corpus contains 38,898 tokens in 2,973 sentences.
+The whole corpus contains 38,884 tokens in 2,972 sentences.
 
 In **UD_French-FIB**, data are split into:
 
@@ -40,7 +40,7 @@ In **UD_French-FIB**, data are split into:
    * using GSD test, ParisStories test, ParTUT test, Rhaposodie test and Sequoia test
  * `fr_fib-ud-dev.conllu`: 2,365 tokens in 130 sentences
    * using GSD dev, ParisStories dev, ParTUT dev, Rhaposodie dev and Sequoia dev
- * `fr_fib-ud-train.conllu`: 34,147 tokens in 2,728 sentences
+ * `fr_fib-ud-train.conllu`: 34,133 tokens in 2,727 sentences
    * using FQB test, GSD train, ParisStories train, ParTUT train, PUD test, Rhaposodie train and Sequoia train
 
 ## Enriched versions
