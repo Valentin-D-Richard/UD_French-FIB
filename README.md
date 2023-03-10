@@ -4,12 +4,19 @@
 # Introduction
 **UD_French-FIB** (French Interrogative Bank) is an extraction of sentences exhibiting an interrogative from French UD corpora:
  * [UD_French-ParTUT](https://github.com/UniversalDependencies/UD_French-ParTUT) (written)
+   * Contributors: Bosco, Cristina; Sanguinetti, Manuela
  * [UD_French-GSD](https://github.com/UniversalDependencies/UD_French-GSD) (written)
+   * Contributors: de Marneffe, Marie-Catherine; Guillaume, Bruno; McDonald, Ryan; Suhr, Alane; Nivre, Joakim; Grioni, Matias; Dickerson, Carly; Perrier, Guy
  * [UD_French-Sequoia](https://github.com/UniversalDependencies/UD_French-Sequoia) (written)
+   * Contributors: Candito, Marie; Seddah, Djamé; Perrier, Guy; Guillaume, Bruno
  * [UD_French-FQB](https://github.com/UniversalDependencies/UD_French-FQB) (written)
+   * Contributors: Seddah, Djamé; Candito, Marie; Guillaume, Bruno
  * [UD_French-Rhaposide](https://github.com/UniversalDependencies/UD_French-Rhapsodie) (spoken)
+   * Contributors: Gerdes, Kim; Kahane, Sylvain; Nakhlé, Mariam; Yan, Chunxiao; Etienne, Aline; Courtin, Marine
  * [UD_French_ParisSotires](https://github.com/UniversalDependencies/UD_French-ParisStories) (spoken)
+   * Contributors: Gerdes, Kim; Kahane, Sylvain; Mahamdi, Menel
  * [UD_French-PUD](https://github.com/UniversalDependencies/UD_French-PUD) (written)
+   * Contributors: Uszkoreit, Hans; Macketanz, Vivien; Burchardt, Aljoscha; Harris, Kim; Marheinecke, Katrin; Petrov, Slav; Kayadelen, Tolga; Attia, Mohammed; Elkahky, Ali; Yu, Zhuoran; Pitler, Emily; Lertpradit, Saran; Strnadová, Jana; Caron, Gauthier; Popel, Martin; Zeman, Daniel; de Marneffe, Marie-Catherine; Guillaume, Bruno
 
 The identification of interrogatives clauses and the extraction were performed using the [FUDIA](https://github.com/Valentin-D-Richard/FUDIA) programme. 20 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
 
@@ -56,16 +63,23 @@ For more information, see the [FUDIA documentation](https://github.com/Valentin-
 ## Genres
 The corpus contains written sentences and trasncriptions of spoken sentences. More about the different genres is to be found in the documentation of the original corpora.
 
-# References
+## References
 
 
-# Changelog
+## Changelog
 
+## Licenses
 
+Caution, due to the originical corpora, the parts of this corpus have different licenses:
+ * [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) for ParTUT
+ * [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) for Rhapsodie, ParisStories, PUD, GSD
+ * LGPL-LR (see `LGPL-LR_LICENSE.txt`) for Sequoia, FQB
+
+The original corpus is prepended to all sentence id.
 
 === Machine-readable metadata (DO NOT REMOVE!) ================================
 Data available since: UD v2.0
-License: LGPL-LR
+License: multiple
 Includes text: yes
 Genre: wiki medical news nonfiction legal blog reviews spoken
 Lemmas: converted from manual
