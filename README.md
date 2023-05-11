@@ -3,22 +3,22 @@
 
 # Introduction
 **UD_French-FIB** (French Interrogative Bank) is an extraction of sentences exhibiting an interrogative from French UD corpora:
- * [UD_French-ParTUT](https://github.com/UniversalDependencies/UD_French-ParTUT) (written)
-   * Contributors: Bosco, Cristina; Sanguinetti, Manuela
- * [UD_French-GSD](https://github.com/UniversalDependencies/UD_French-GSD) (written)
-   * Contributors: de Marneffe, Marie-Catherine; Guillaume, Bruno; McDonald, Ryan; Suhr, Alane; Nivre, Joakim; Grioni, Matias; Dickerson, Carly; Perrier, Guy
- * [UD_French-Sequoia](https://github.com/UniversalDependencies/UD_French-Sequoia) (written)
-   * Contributors: Candito, Marie; Seddah, Djamé; Perrier, Guy; Guillaume, Bruno
  * [UD_French-FQB](https://github.com/UniversalDependencies/UD_French-FQB) (written)
    * Contributors: Seddah, Djamé; Candito, Marie; Guillaume, Bruno
- * [UD_French-Rhaposide](https://github.com/UniversalDependencies/UD_French-Rhapsodie) (spoken)
-   * Contributors: Gerdes, Kim; Kahane, Sylvain; Nakhlé, Mariam; Yan, Chunxiao; Etienne, Aline; Courtin, Marine
+ * [UD_French-GSD](https://github.com/UniversalDependencies/UD_French-GSD) (written)
+   * Contributors: de Marneffe, Marie-Catherine; Guillaume, Bruno; McDonald, Ryan; Suhr, Alane; Nivre, Joakim; Grioni, Matias; Dickerson, Carly; Perrier, Guy
  * [UD_French_ParisSotires](https://github.com/UniversalDependencies/UD_French-ParisStories) (spoken)
    * Contributors: Gerdes, Kim; Kahane, Sylvain; Mahamdi, Menel
+ * [UD_French-ParTUT](https://github.com/UniversalDependencies/UD_French-ParTUT) (written)
+   * Contributors: Bosco, Cristina; Sanguinetti, Manuela
  * [UD_French-PUD](https://github.com/UniversalDependencies/UD_French-PUD) (written)
    * Contributors: Uszkoreit, Hans; Macketanz, Vivien; Burchardt, Aljoscha; Harris, Kim; Marheinecke, Katrin; Petrov, Slav; Kayadelen, Tolga; Attia, Mohammed; Elkahky, Ali; Yu, Zhuoran; Pitler, Emily; Lertpradit, Saran; Strnadová, Jana; Caron, Gauthier; Popel, Martin; Zeman, Daniel; de Marneffe, Marie-Catherine; Guillaume, Bruno
+ * [UD_French-Rhaposide](https://github.com/UniversalDependencies/UD_French-Rhapsodie) (spoken)
+   * Contributors: Gerdes, Kim; Kahane, Sylvain; Nakhlé, Mariam; Yan, Chunxiao; Etienne, Aline; Courtin, Marine
+ * [UD_French-Sequoia](https://github.com/UniversalDependencies/UD_French-Sequoia) (written)
+   * Contributors: Candito, Marie; Seddah, Djamé; Perrier, Guy; Guillaume, Bruno
 
-The identification of interrogatives clauses and the extraction were performed using the [FUDIA](https://github.com/Valentin-D-Richard/FUDIA) programme. 20 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
+The identification of interrogatives clauses and the extraction were performed using the [FUDIA](https://github.com/Valentin-D-Richard/FUDIA) programme. 21 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
 
 ## Changes wrt. original UD corpora
 

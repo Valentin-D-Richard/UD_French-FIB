@@ -1,0 +1,11 @@
+rule rem_cue {
+    pattern { c: CL_HEAD -[1=cue]-> M }
+    commands { del_edge c }
+}
+
+rule rem_quoted {
+    pattern { Q[Quoted="Yes"] }
+    commands { del_feat Q.Quoted }
+}
+
+strat main { Seq(Onf(rem_cue), Onf(rem_quoted)) }
