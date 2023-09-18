@@ -11,7 +11,9 @@ CL = "CL" # clitic subject marker
 GN = "GN" # nominal subject
 CH = "CH" # UD clause head (if different from V)
 K = "K" # 'que'
-SI = 'si'
+SI = "SI"
+C = "C"
+EST = "EST"
 W = "*" # wildcard
 p = "pattern"
 w = "without"
@@ -20,51 +22,64 @@ w = "without"
 #### Regularly occurring strings
 def ecq_marker(head:str, marker:str) -> str:
     req = head+' -[cue:mark]-> '+marker+' ; '
-    return req+marker+'[lemma="être"] ;\n'
+    return req+marker+'[lemma="être"] ; \n'
 
 def has_ecq_marker(head:str) -> str:
     return ecq_marker(head,E)
 
 def cl_marker(head:str, subject:str) -> str:
-    req = head+' -[cue:mark]-> '+subject+' ;\n'
+    req = head+' -[cue:mark]-> '+subject+' ; \n'
     req += head+' -[expl:nsubj|nsubj|nsubj:pass]-> '+subject+' ; '
-    return req+subject+'[upos="PRON"] ;\n'
+    return req+subject+'[upos="PRON"] ; \n'
 
 def has_cl_marker(head:str) -> str:
     return cl_marker(head, CL)
 
 def que_marker(head:str, marker:str) -> str:
     req = head+' -[cue:mark]-> '+marker+' ; '
-    return req+marker+'[lemma="que"] ;\n'
+    return req+marker+'[lemma="que"] ; \n'
+
+def has_que_marker(head:str) -> str:
+    return cl_marker(head, K)
 
 def ch(head:str) -> str: # is_clause_head
-    return head+'[ClauseType="Int"] ;\n'
+    return head+'[ClauseType="Int"] ; \n'
 
 def is_qu_word(head:str) -> str:
-    return head+'[PronType="Int"] ;\n'
+    return head+'[PronType="Int"] ; \n'
 
 def qu_word(head:str, qu:str) -> str:
-    return head+' -[cue:wh]-> '+qu+' ;\n'
+    return head+' -[cue:wh]-> '+qu+' ; \n'
 
 def copaux(head:str, copaux:str) -> str:
-    return head+' -[1=cop|aux]-> '+copaux+' ;\n'
+    return head+' -[1=cop|aux]-> '+copaux+' ; \n'
 
 def precedes(first:str, second:str) -> str:
-    return first+' << '+second+' ;\n'
+    return first+' << '+second+' ; \n'
 
 def prec_subj(head:str, subject:str) -> str:
     req = head+' -[expl:nsubj|nsubj|nsubj:pass|csubj]-> '+subject
-    return req+precedes(subject,head)
+    return req+''' ; '''+precedes(subject,head)
+
+def suc_subj(head:str, subject:str) -> str:
+    req = head+' -[expl:nsubj|nsubj|nsubj:pass|csubj]-> '+subject
+    return req+''' ; '''+precedes(head,subject)
 
 def prec_gn(head:str, subject:str) -> str:
     req = head+' -[nsubj|nsubj:pass]-> '+subject
-    return req+precedes(subject,head)
+    return req+''' ; '''+precedes(subject,head)
 
 def suc_gn(head:str, subject:str) -> str:
     req = head+' -[nsubj|nsubj:pass]-> '+subject
-    return req+precedes(head,subject)
+    return req+''' ; '''+precedes(head,subject)
 
+def lemma(head:str, lemma:str) -> str:
+    return head+'''[lemma="'''+lemma+'''"] ; \n'''
 
+def cleft(subj:str, cop:str, sconj:str) -> str:
+    req = subj+'''[lemma="ce"] ; '''+cop+'''[lemma="être"] ; '''
+    req += subj+''' < '''+cop+''' ; \n'''
+    return req+sconj+'''[lemma="que"|"qui"|"dont", upos="SCONJ"] ; \n'''
 
 
 ##### Request descriptions
@@ -84,12 +99,19 @@ ESV1 = [
 ]
 
 VCL1 = [
-    (p,ch(V) + has_cl_marker(V)),
+    (p,ch(V) + cl_marker(V,CL) + precedes(V,CL)),
     (w, copaux(V,W)),
     (w, qu_word(V,Q)),
     (w, is_qu_word(V)),
     (w, prec_subj(V,S)),
     (w, has_ecq_marker(V))
+]
+VCL2 = [
+    (p,ch(CH) + copaux(CH,V) + cl_marker(CH,CL) + precedes(V,CL)),
+    (w, qu_word(CH,Q)),
+    (w, is_qu_word(CH)),
+    (w, prec_subj(CH,S)),
+    (w, has_ecq_marker(CH))
 ]
 
 GNVCL1 = [
@@ -99,6 +121,13 @@ GNVCL1 = [
     (w, is_qu_word(V)),
     (w, has_ecq_marker(V))
 ]
+GNVCL2 = [
+    (p,ch(CH) + copaux(CH,V) + cl_marker(CH,CL) + precedes(V,CL) +
+     prec_gn(CH,GN) + precedes(GN,V)),
+    (w, qu_word(CH,Q)),
+    (w, is_qu_word(CH)),
+    (w, has_ecq_marker(CH))
+]
 
 
 ### Constituent
@@ -107,96 +136,257 @@ SVQ1 = [
     (p, ch(V) + qu_word(V,Q) + precedes(V,Q) + prec_subj(V,S)),
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
-    (w, has_cl_marker(V))
+    (w, has_cl_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
 ]
 SVQ2 = [
+    (p, ch(CH) + copaux(CH,V) + qu_word(CH,Q) + precedes(V,Q) +
+     prec_subj(CH,S) + precedes(S,V)),
+    (w, has_ecq_marker(CH)),
+    (w, has_cl_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
 ]
 SVQ3 = [
     (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + prec_subj(V,S)),
     (w, has_ecq_marker(Q)),
-    (w, has_cl_marker(Q))
+    (w, has_cl_marker(Q)),
+    (w, has_que_marker(Q))
 ]
 
 QSV1 = [
     (p, ch(V) + qu_word(V,Q) + prec_subj(V,S) + precedes(Q,S)),
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
-    (w, has_cl_marker(V))
+    (w, has_cl_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
 ]
 QSV2 = [
+    (p, ch(CH) + copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
+     precedes(S,V) + precedes(Q,S)),
+    (w, has_ecq_marker(CH)),
+    (w, has_cl_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
 ]
 QSV3 = [
-    (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + prec_subj(S,V) + precedes(Q,S)),
+    (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + prec_subj(Q,S) + precedes(Q,S)),
     (w, has_ecq_marker(Q)),
-    (w, has_cl_marker(Q))
+    (w, has_cl_marker(Q)),
+    (w, has_que_marker(Q))
 ]
 
 QVCL1 = [
-    (p, ch(V) + precedes(Q,V) + has_cl_marker(V)),
+    (p, ch(V) + precedes(Q,V) + qu_word(V,Q) + cl_marker(V,CL) +
+     precedes(V,CL)),
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
-    (w, prec_subj(V,S))
+    (w, prec_subj(V,S)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
+]
+QVCL2 = [
+    (p, ch(CH) + copaux(CH,V) + precedes(Q,V) + qu_word(V,Q) +
+     cl_marker(CH,CL) + precedes(V,CL)),
+    (w, has_ecq_marker(CH)),
+    (w, prec_subj(CH,S)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
+]
+QVCL3 = [
+    (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + precedes(Q,V) + 
+     cl_marker(Q,CL) + precedes(V,CL)),
+    (w, has_ecq_marker(Q)),
+    (w, prec_subj(Q,S)),
+    (w, has_que_marker(Q))
 ]
 
 QGNVCL1 = [
-    (p, ch(V) + prec_gn(V,GN) + precedes(Q,GN) + has_cl_marker(V)),
+    (p, ch(V) + prec_gn(V,GN) + qu_word(V,Q) + precedes(Q,GN) +
+     cl_marker(V,CL) + precedes(V,CL)),
     (w, copaux(V,W)),
-    (w, has_ecq_marker(V))
+    (w, has_ecq_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
+]
+QGNVCL2 = [
+    (p, ch(CH) + copaux(CH,V) + prec_gn(CH,GN) + precedes(GN,V) +
+     qu_word(CH,Q) + precedes(Q,GN) +
+     cl_marker(CH,CL) + precedes(V,CL)),
+    (w, has_ecq_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
+]
+QGNVCL3 = [
+    (p, ch(Q) + suc_gn(Q,GN) + is_qu_word(Q) + copaux(Q,V) + precedes(GN,V) +
+     cl_marker(Q, CL) + precedes(V, CL)),
+    (w, has_ecq_marker(Q)),
+    (w, has_que_marker(Q))
 ]
 
 QVGN1 = [
-    (p, ch(V) + suc_gn(V,GN) + precedes(Q,V)),
+    (p, ch(V) + suc_gn(V,GN) + qu_word(V,Q) + precedes(Q,V)),
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
     (w, has_cl_marker(V)),
-    (w, cl_marker(GN))
+    (w, cl_marker(V,GN)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
+]
+QVGN2 = [
+    (p, ch(CH) + copaux(CH,V) + precedes(V,CH) + suc_gn(CH,GN) +
+     qu_word(CH,Q) + precedes(Q,V)),
+    (w, has_ecq_marker(CH)),
+    (w, has_cl_marker(CH)),
+    (w, cl_marker(CH,GN)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
+]
+QVGN3 = [
+    (p, ch(Q) + is_qu_word(Q) + suc_gn(Q,GN) + copaux(Q,V) + precedes(V,GN)),
+    (w, has_ecq_marker(Q)),
+    (w, has_cl_marker(Q)),
+    (w, cl_marker(Q,GN)),
+    (w, has_que_marker(Q))
 ]
 
 SEQKSV1 = [
-    (p,'''V[ClauseType="Int"] ; V -[cue:wh]-> Q ;
-     ''')
+    (p,ch(V) + qu_word(V,Q) + prec_subj(V,S) + cleft(C,EST,K) + 
+     precedes(C,EST) + precedes(Q,K) + precedes(K,S)),
+    (w, copaux(V,W)),
+    (w, has_cl_marker(V)),
+    (w, has_ecq_marker(V)),
+    (w, que_marker(V, "K2")),
+    (w, is_qu_word(V))
+]
+SEQKSV2 = [
+    (p,ch(CH) + copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
+     precedes(S,V) + cleft(C,EST,K) + 
+     precedes(C,EST) + precedes(Q,K) + precedes(K,S)),
+    (w, has_cl_marker(CH)),
+    (w, has_ecq_marker(CH)),
+    (w, que_marker(CH, "K2")),
+    (w, is_qu_word(CH))
+]
+SEQKSV3 = [
+    (p,ch(Q) + is_qu_word(Q) + copaux(Q,V) + suc_subj(Q,S) + cleft(C,EST,K) + 
+     precedes(C,EST) + precedes(Q,K) + precedes(K,S) + precedes(S,V)),
+    (w, has_cl_marker(Q)),
+    (w, has_ecq_marker(Q)),
+    (w, que_marker(Q, "K2")),
 ]
 
 QESV1 = [
     (p,ch(V) + ecq_marker(V,E) + qu_word(V,Q) + precedes(Q,E)
      + prec_subj(V,S) + precedes(E,S)),
     (w, copaux(V,W)),
-    (w, has_cl_marker(V))
+    (w, has_cl_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
+]
+QESV2 = [
+    (p,ch(CH) + copaux(CH,V) + ecq_marker(CH,E) + qu_word(CH,Q) +
+     precedes(Q,E) + prec_subj(CH,S) + precedes(S,V) + precedes(E,S)),
+    (w, has_cl_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
+]
+QESV3 = [
+    (p,ch(Q) + is_qu_word(Q) + ecq_marker(Q,E) + copaux(Q,V) + precedes(Q,E)
+     + suc_subj(Q,S) + precedes(E,S) + precedes(S,V)),
+    (w, has_cl_marker(Q)),
+    (w, has_que_marker(Q)),
 ]
 
 QSEKSV1 = [
-    (p,'''V[ClauseType="Int"] ; V -[cue:wh]-> Q ;
-     ''')
+    (p, ch(V) + qu_word(V,Q) + prec_subj(V,S) + cleft(C,EST,K) + 
+     precedes(Q,C) + precedes(EST,K) + precedes(K,S)),
+    (w, copaux(V,W)),
+    (w, has_cl_marker(V)),
+    (w, has_ecq_marker(V)),
+    (w, que_marker(V, "K2")),
+    (w, is_qu_word(V))
+]
+QSEKSV2 = [
+    (p, ch(CH) + copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
+     precedes(S,V) + cleft(C,EST,K) + 
+     precedes(Q,C) + precedes(EST,K) + precedes(K,S)),
+    (w, has_cl_marker(CH)),
+    (w, has_ecq_marker(CH)),
+    (w, que_marker(CH, "K2")),
+    (w, is_qu_word(CH))
+]
+QSEKSV3 = [
+    (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + suc_subj(S,S) + cleft(C,EST,K) + 
+     precedes(Q,C) + precedes(EST,K) + precedes(K,S) + precedes(S,V)),
+    (w, has_cl_marker(Q)),
+    (w, has_ecq_marker(Q)),
+    (w, que_marker(Q, "K2")),
 ]
 
 QKSV1 = [
-    (p,ch(V) + que_marker(V,K) + qu_word(V,Q) + precedes(Q,K)
+    (p, ch(V) + que_marker(V,K) + qu_word(V,Q) + precedes(Q,K)
      + prec_subj(V,S) + precedes(K,S)),
     (w, copaux(V,W)),
-    (w, has_cl_marker(V))
+    (w, has_cl_marker(V)),
+    (w, is_qu_word(V)),
+    (w, has_ecq_marker(V))
+]
+QKSV2 = [
+    (p, ch(CH) + copaux(CH,V) + que_marker(CH,K) + qu_word(CH,Q) +
+     precedes(Q,K) + prec_subj(CH,S) + precedes(S,V) + precedes(K,S)),
+    (w, has_cl_marker(CH)),
+    (w, is_qu_word(CH)),
+    (w, has_ecq_marker(CH))
+]
+QKSV3 = [
+    (p, ch(Q) + is_qu_word(Q) + que_marker(V,K) + copaux(Q, V) +
+     precedes(Q,K) + suc_subj(Q,S) + precedes(K,S) + precedes(S,V)),
+    (w, has_cl_marker(Q)),
+    (w, has_ecq_marker(Q))
 ]
 
 QeqSV1 = [
-    (p,'''V[ClauseType="Int"] ; V -[cue:wh]-> Q ;
-     ''')
+    (p, ch(V) + prec_subj(V,Q) + qu_word(V,Q)),
+    (w, copaux(V,W)),
+    (w, has_cl_marker(V)),
+    (w, has_ecq_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V))
+]
+QeqSV2 = [
+    (p, ch(CH) + copaux(CH,V) + prec_subj(CH,Q) + precedes(Q,V) +
+     qu_word(CH,Q)),
+    (w, has_cl_marker(CH)),
+    (w, has_ecq_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH))
+]
+QeqSV3 = [
+    (p, ch(Q) + is_qu_word(Q) + copaux(Q,V) + precedes(Q,V)),
+    (w, has_cl_marker(V)),
+    (w, has_ecq_marker(V)),
+    (w, has_que_marker(V))
 ]
 
 COVENEY_REQS = { # From [Coveney 2011]
     # yes-no (fr. totale):
-    "ESV": ESV1, # Est-ce que les autres / ils sont partis ?
-    "V-CL": VCL1, # Sont-ils partis ?
-    "GN_V-CL": GNVCL1, # Les autres sont-ils partis ?
+    "ESV": [ESV1], # Est-ce que les autres / ils sont partis ?
+    "V-CL": [VCL1, VCL2], # Sont-ils partis ?
+    "GN_V-CL": [GNVCL1, GNVCL2], # Les autres sont-ils partis ?
     # constituent (fr. partielle):
-    "SVQ": SVQ1, # Ils sont partis où ?
-    "QSV": QSV1, # Où ils sont partis ?
-    "QV-CL": QVCL1, # Où sont-ils partis ?
-    "Q_GN_V-CL": QGNVCL1, # Où les autres sont-ils partis ?
-    "QV_GN": QVGN1, # Où sont partis les autres ?
-    "seQkSV": SEQKSV1, # C’est où qu’ils sont partis ?
-    "QESV": QESV1, # Où est-ce qu’ils sont partis ?
-    "QsekSV": QSEKSV1, # Où c’est qu’ils sont partis ?
-    "QkSV": QKSV1, # Où qu’ils sont partis ?
-    "Q=S_V": QeqSV1, # Lesquels sont partis ?
+    "SVQ": [SVQ1, SVQ2, SVQ3], # Ils sont partis où ?
+    "QSV": [QSV1, QSV2, QSV3], # Où ils sont partis ?
+    "QV-CL": [QVCL1, QVCL2, QVCL3], # Où sont-ils partis ?
+    "Q_GN_V-CL": [QGNVCL1, QGNVCL2, QGNVCL3], # Où les autres sont-ils partis ?
+    "QV_GN": [QVGN1, QVGN2, QVGN3], # Où sont partis les autres ?
+    "seQkSV": [SEQKSV1, SEQKSV2, SEQKSV3], # C’est où qu’ils sont partis ?
+    "QESV": [QESV1, QESV2, QESV3], # Où est-ce qu’ils sont partis ?
+    "QsekSV": [QSEKSV1, QSEKSV2, QSEKSV3], # Où c’est qu’ils sont partis ?
+    "QkSV": [QKSV1, QKSV2, QKSV3], # Où qu’ils sont partis ?
+    "Q=S_V": [QeqSV1, QeqSV2, QeqSV3], # Lesquels sont partis ?
     # hybrid
     "QEV_GN": "qu+ 'est-ce que' + stylistic inversion", # Avec qui est-ce que travaille nicole Dupont ?
     "Q=S_V-CL": "subject qu + clitic inversion", # De ces fillettes, lesquelles sont-elles les tiennes ?
