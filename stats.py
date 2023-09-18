@@ -11,11 +11,11 @@ gp.set_config("ud")
 
 ##### Global constant variables
 
-FORMATS = ["txt", "csv", "json"]
+FORMATS = ["txt", "csv", "json", "plot"]
 
 # List of corpora (sentence id prefix)
-SUBCORPORA = ["GSD", "ParisStories", "ParTUT", "Rhap",
-           "Sequoia", "FQB"]
+SUBCORPORA = ["FQB", "Sequoia", "GSD", "ParTUT", "PUD", "Rhap",
+              "ParisStories"]
 # List of interrogative word lemmas
 QUS = ["combien", "comment", "lequel", "où", "pourquoi",
        "quand", "quel", "qecq", "qui", "quoi", "que"]
@@ -47,13 +47,14 @@ COVENEY = { # From [Coveney 2011]
 
 RICHARD = {}
 
+from requests.no import NO_REQS
 NO = {
     "all": "no grouping by annotation scheme category"
 }
 
 SCHEMES = {
     "coveney":(COVENEY, COVENEY_REQS),
-    "richard":RICHARD, "no":NO}
+    "richard":RICHARD, "no":(NO, NO_REQS)}
 
 ##### Argument parser
 description = "Extract sentences and compile statitics"
@@ -68,12 +69,12 @@ richard [Richard 2023],
 no (doesn't aggregate on syntactic pattern)'''
 parser.add_argument("-s", "--scheme", action="store",
                         choices=SCHEMES.keys(), dest="scheme",
-                        default="coveney", nargs=1,
+                        default=["coveney"], nargs=1,
                         metavar="SCHEME", help=message)
-message = '''Output format, among: txt (default), csv, json'''
+message = '''Output format, among: txt (default), csv, json, plot'''
 parser.add_argument("-f", "--format", action="store",
                         choices=FORMATS, dest="format",
-                        default="txt", nargs=1,
+                        default=["txt"], nargs=1,
                         metavar="FORMAT", help=message)
 
 args = parser.parse_args()
@@ -94,21 +95,30 @@ def qu_req(qu_lemma:str) -> tuple:
     interrogative word lemma"""
     return ("pattern",'Q[lemma = "'+ qu_lemma +'"]')
 
+def add_totals(df:pd.DataFrame) -> ():
+    """"Adds a column with total on row and a line with totals on columns"""
+    df['Total'] = df.sum(axis=1,numeric_only=True) # column
+    nb = len(frame.index)
+    df.loc[nb]= df.sum() # row
+    df.loc[nb,"subcorpus"] = "Total"
+
+
+
 #### Main function
 dict = {"subcorpus": SUBCORPORA}
-dict.update({cat:0 for cat in SCHEMES[args.scheme][0].keys()})
+dict.update({cat:0 for cat in SCHEMES[args.scheme[0]][0].keys()})
 frame = pd.DataFrame(dict)
 
 corpus = gp.Corpus(args.filenames)
 
 # Computing occurence number par category and subcorpus
-for cat in SCHEMES[args.scheme][0].keys():
+for cat in SCHEMES[args.scheme[0]][0].keys():
     for i, subcorpus in enumerate(SUBCORPORA):
         frame.at[i,cat] = 0
 
         # Adding the counts of the different requests
         # defined in requests/<scheme>.py
-        for elt_list in cat_req(args.scheme, cat):
+        for elt_list in cat_req(args.scheme[0], cat):
             request = gp.Request()
             for elt in elt_list:
                 request.append(*elt)
@@ -121,10 +131,27 @@ for cat in SCHEMES[args.scheme][0].keys():
                 print("#####")
                 raise gp.grew.GrewError(err)
 
+add_totals(frame)
+
+
+##### Rendering output
+
 if args.format[0] == "csv":
     print(frame.to_csv())
+
 elif args.format[0] == "json":
     print(frame.to_json())
+
+elif args.format[0] == "plot":
+    
+    # ploting all corpora on the same plot
+    title = "Distribution of French interrogatives "
+    title += " ("+args.scheme[0]+" scheme)"
+    frame.index = frame["subcorpus"]
+    frame = frame[1:-1].T[1:-1] # removing FQB
+    frame.plot(kind='bar', title=title)
+    plt.show()
+
 else:
     print(frame)
 
