@@ -121,10 +121,12 @@ for cat in SCHEMES[args.scheme][0].keys():
                 print("#####")
                 raise gp.grew.GrewError(err)
 
-if args.format == "csv":
+if args.format[0] == "csv":
     print(frame.to_csv())
-elif args.format == "json":
+elif args.format[0] == "json":
     print(frame.to_json())
+else:
+    print(frame)
 
 
 
