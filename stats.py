@@ -71,13 +71,21 @@ parser.add_argument("-s", "--scheme", action="store",
                         choices=SCHEMES.keys(), dest="scheme",
                         default=["coveney"], nargs=1,
                         metavar="SCHEME", help=message)
-message = '''Output format, among: txt (default), csv, json, plot'''
+message = 'Output format, among: txt (default), csv, json, plot'
 parser.add_argument("-f", "--format", action="store",
                         choices=FORMATS, dest="format",
                         default=["txt"], nargs=1,
                         metavar="FORMAT", help=message)
-
-args = parser.parse_args()
+message = 'Subcorpora included, among: '+', '.join(SUBCORPORA)
+parser.add_argument("-i", "--include", action="store",
+                        choices=SUBCORPORA, dest="include",
+                        default=SUBCORPORA, nargs="+",
+                        metavar="SUBCORPUS", help=message)
+message = 'Subcorpora to exclude, among: '+', '.join(SUBCORPORA)
+parser.add_argument("-e", "--exclude", action="store",
+                        choices=SUBCORPORA, dest="exclude",
+                        default=[], nargs="+",
+                        metavar="SUBCORPUS", help=message)
                           
 ##### Utils
 
@@ -103,28 +111,36 @@ def add_totals(df:pd.DataFrame) -> ():
     df.loc[nb,"subcorpus"] = "Total"
 
 
+#### Retrieving arguments
+
+args = parser.parse_args()
+subcorpora = [sc for sc in args.include if sc not in args.exclude]
+scheme = args.scheme[0]
+o_format = args.format[0]
+
 
 #### Main function
-dict = {"subcorpus": SUBCORPORA}
-dict.update({cat:0 for cat in SCHEMES[args.scheme[0]][0].keys()})
+dict = {"subcorpus": subcorpora}
+dict.update({cat:0 for cat in SCHEMES[scheme][0].keys()})
 frame = pd.DataFrame(dict)
 
 corpus = gp.Corpus(args.filenames)
 
 # Computing occurence number par category and subcorpus
-for cat in SCHEMES[args.scheme[0]][0].keys():
-    for i, subcorpus in enumerate(SUBCORPORA):
+for cat in SCHEMES[scheme][0].keys():
+    for i, subcorpus in enumerate(subcorpora):
         frame.at[i,cat] = 0
 
         # Adding the counts of the different requests
         # defined in requests/<scheme>.py
-        for elt_list in cat_req(args.scheme[0], cat):
+        for elt_list in cat_req(scheme, cat):
             request = gp.Request()
             for elt in elt_list:
                 request.append(*elt)
             request.append(*subcorpus_req(subcorpus))
             try:
                 frame.at[i,cat] += corpus.count(request)
+                
             except (gp.grew.GrewError,UnicodeDecodeError) as err:
                 print("##### Some error occured at "+cat+" while parsing the request:")
                 print(request)
@@ -136,20 +152,21 @@ add_totals(frame)
 
 ##### Rendering output
 
-if args.format[0] == "csv":
+if o_format == "csv":
     print(frame.to_csv())
 
-elif args.format[0] == "json":
+elif o_format == "json":
     print(frame.to_json())
 
-elif args.format[0] == "plot":
+elif o_format == "plot":
     
     # ploting all corpora on the same plot
     title = "Distribution of French interrogatives "
     title += " ("+args.scheme[0]+" scheme)"
     frame.index = frame["subcorpus"]
-    frame = frame[1:-1].T[1:-1] # removing FQB
+    frame = frame[:-1].T[1:-1] # removing totals
     frame.plot(kind='bar', title=title)
+    plt.xticks(rotation = 45)
     plt.show()
 
 else:
