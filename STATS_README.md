@@ -9,7 +9,7 @@ This python script can be used to count occurrences of French interrogative in t
  * `pandas`
  * `matplotlib.pyplot`
  * `argparse`
- * `grewpy` v. >= 0.4.0 (requires `grew`, see [https://grew.fr/usage/python/])
+ * `grewpy` v. >= 0.4.3 (requires `grew`, see [https://grew.fr/usage/python/])
 
 You can install them using `pip3`.
 
@@ -87,6 +87,8 @@ The available output formats are
  * `csv`
  * `json`
  * `plot`: bar plot
+ * `sents`: list of raw text sentences exhibiting the pattern
+ * `graphs`: list of highlighted graphs
 
 ## Selecting subcorpora: -i, --include / -e, --exclude
 

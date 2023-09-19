@@ -11,7 +11,7 @@ gp.set_config("ud")
 
 ##### Global constant variables
 
-FORMATS = ["txt", "csv", "json", "plot"]
+FORMATS = ["txt", "csv", "json", "plot", "sents", "graphs"]
 
 # List of corpora (sentence id prefix)
 SUBCORPORA = ["FQB", "Sequoia", "GSD", "ParTUT", "PUD", "Rhap",
@@ -86,6 +86,13 @@ parser.add_argument("-e", "--exclude", action="store",
                         choices=SUBCORPORA, dest="exclude",
                         default=[], nargs="+",
                         metavar="SUBCORPUS", help=message)
+
+#### Retrieving arguments
+
+args = parser.parse_args()
+subcorpora = [sc for sc in args.include if sc not in args.exclude]
+scheme = args.scheme[0]
+o_format = args.format[0]
                           
 ##### Utils
 
@@ -103,20 +110,29 @@ def qu_req(qu_lemma:str) -> tuple:
     interrogative word lemma"""
     return ("pattern",'Q[lemma = "'+ qu_lemma +'"]')
 
+def elt_subcorpus_req(elt_list:list, subcorpus:str) -> gp.Request:
+    """Returns a grew Request from a given request list elt_list
+     (of a given category) and a subcorpus"""
+    request = gp.Request()
+    for elt in elt_list:
+        request.append(*elt)
+    request.append(*subcorpus_req(subcorpus))
+    return request
+
+def search_res(corpus: gp.Corpus, cat:str, subcorpus:str) -> list:
+    """Returns the result of the search request on category cat
+    and subcorpus"""
+    res = []
+    for elt_list in cat_req(scheme, cat):
+        res += corpus.search(elt_subcorpus_req(elt_list, subcorpus))
+    return res
+
 def add_totals(df:pd.DataFrame) -> ():
     """"Adds a column with total on row and a line with totals on columns"""
     df['Total'] = df.sum(axis=1,numeric_only=True) # column
     nb = len(frame.index)
     df.loc[nb]= df.sum() # row
     df.loc[nb,"subcorpus"] = "Total"
-
-
-#### Retrieving arguments
-
-args = parser.parse_args()
-subcorpora = [sc for sc in args.include if sc not in args.exclude]
-scheme = args.scheme[0]
-o_format = args.format[0]
 
 
 #### Main function
@@ -127,27 +143,33 @@ frame = pd.DataFrame(dict)
 corpus = gp.Corpus(args.filenames)
 
 # Computing occurence number par category and subcorpus
-for cat in SCHEMES[scheme][0].keys():
-    for i, subcorpus in enumerate(subcorpora):
-        frame.at[i,cat] = 0
+if o_format != "sents" and o_format != "graphs":
+    for cat in SCHEMES[scheme][0].keys():
+        for i, subcorpus in enumerate(subcorpora):
+            frame.at[i,cat] = 0
 
-        # Adding the counts of the different requests
-        # defined in requests/<scheme>.py
-        for elt_list in cat_req(scheme, cat):
-            request = gp.Request()
-            for elt in elt_list:
-                request.append(*elt)
-            request.append(*subcorpus_req(subcorpus))
-            try:
-                frame.at[i,cat] += corpus.count(request)
-                
-            except (gp.grew.GrewError,UnicodeDecodeError) as err:
-                print("##### Some error occured at "+cat+" while parsing the request:")
-                print(request)
-                print("#####")
-                raise gp.grew.GrewError(err)
+            # Adding the counts of the different requests
+            # defined in requests/<scheme>.py
+            for elt_list in cat_req(scheme, cat):
+                request = elt_subcorpus_req(elt_list, i)
+                try:
+                    frame.at[i,cat] += corpus.count(request)
+                    
+                # Anticipating errors in module requests
+                except (gp.grew.GrewError,UnicodeDecodeError) as err:
+                    print("##### Some error occured at "+cat+" while parsing the request:")
+                    print(request)
+                    print("#####")
+                    raise gp.grew.GrewError(err)
 
-add_totals(frame)
+    add_totals(frame)
+
+if o_format == "sents" or o_format == "graphs":
+    # Concatenating the list of results of search requests
+    for cat in SCHEMES[scheme][0].keys():
+        frame[cat] = frame.apply(
+            lambda idx: search_res(corpus, cat, idx[0]), axis=1
+        )
 
 
 ##### Rendering output
@@ -168,6 +190,27 @@ elif o_format == "plot":
     frame.plot(kind='bar', title=title)
     plt.xticks(rotation = 45)
     plt.show()
+
+elif o_format == "sents":
+
+    # Printing the list of sentences
+    for cat in SCHEMES[scheme][0].keys():
+        print("########## Category:", cat)
+        for i, subcorpus in enumerate(subcorpora):
+            print("##### Corpus:", subcorpus)
+            sents = set([corpus.get(sent['sent_id']).json_data()
+                        ['meta']['text'] for sent in frame.at[i,cat]])
+            print('\n'.join(sents))
+
+elif o_format == "graphs":
+
+    # Creating a dot file for every sentences
+    for cat in SCHEMES[scheme][0].keys():
+        for i, subcorpus in enumerate(subcorpora):
+            for sent in frame.at[i,cat]:
+                dot = corpus.get(sent['sent_id']).to_dot()
+                print(dot)
+
 
 else:
     print(frame)
