@@ -1,7 +1,5 @@
 ##### Category requests for coveney annotation scheme
 
-
-
 ##### String variables
 V = "V" # main verb
 Q = "Q" # qu-word
@@ -84,6 +82,13 @@ def cleft(subj:str, cop:str, sconj:str) -> str:
     req += subj+' < '+cop+' ; \n'
     return req+sconj+'[lemma="que"|"qui"|"dont", upos="SCONJ"] ; \n'
 
+def subordinated1(head:str) -> str:
+    return 'A -[1=ccomp|csubj|xcomp]-> '+head+' ; \n'
+
+def subordinated2(head:str) -> str:
+    req = 'A -[1=acl|advcl]-> '+head+' ; \n'
+    return req+head+' -> P ; P[lemma="ADP"] ; P << '+head
+
 
 ##### Request descriptions
 
@@ -95,10 +100,10 @@ def cleft(subj:str, cop:str, sconj:str) -> str:
 
 ESV1 = [
     (p, ch(V) + has_ecq_marker(V) + prec_subj(V,S)),
-    (w, copaux(V,W)),
     (w, qu_word(V,Q)),
     (w, is_qu_word(V)),
-    (w, has_cl_marker(V))
+    (w, has_cl_marker(V)),
+    (w, subordinated1(V)),
 ]
 
 VCL1 = [
@@ -107,14 +112,16 @@ VCL1 = [
     (w, qu_word(V,Q)),
     (w, is_qu_word(V)),
     (w, prec_subj(V,S)),
-    (w, has_ecq_marker(V))
+    (w, has_ecq_marker(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 VCL2 = [
     (p,ch(CH) + fin_copaux(CH,V) + cl_marker(CH,CL) + precedes(V,CL)),
     (w, qu_word(CH,Q)),
     (w, is_qu_word(CH)),
     (w, prec_subj(CH,S)),
-    (w, has_ecq_marker(CH))
+    (w, has_ecq_marker(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 
 GNVCL1 = [
@@ -122,14 +129,16 @@ GNVCL1 = [
     (w, copaux(V,W)),
     (w, qu_word(V,Q)),
     (w, is_qu_word(V)),
-    (w, has_ecq_marker(V))
+    (w, has_ecq_marker(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 GNVCL2 = [
     (p,ch(CH) + fin_copaux(CH,V) + cl_marker(CH,CL) + precedes(V,CL) +
      prec_gn(CH,GN) + precedes(GN,V)),
     (w, qu_word(CH,Q)),
     (w, is_qu_word(CH)),
-    (w, has_ecq_marker(CH))
+    (w, has_ecq_marker(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 
 
@@ -141,7 +150,8 @@ SVQ1 = [
     (w, has_ecq_marker(V)),
     (w, has_cl_marker(V)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 SVQ2 = [
     (p, ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + precedes(V,Q) +
@@ -149,13 +159,15 @@ SVQ2 = [
     (w, has_ecq_marker(CH)),
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 SVQ3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + prec_subj(V,S)),
     (w, has_ecq_marker(Q)),
     (w, has_cl_marker(Q)),
-    (w, has_que_marker(Q))
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QSV1 = [
@@ -164,7 +176,8 @@ QSV1 = [
     (w, has_ecq_marker(V)),
     (w, has_cl_marker(V)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QSV2 = [
     (p, ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
@@ -172,14 +185,16 @@ QSV2 = [
     (w, has_ecq_marker(CH)),
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QSV3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + prec_subj(Q,S) +
      precedes(Q,S)),
     (w, has_ecq_marker(Q)),
     (w, has_cl_marker(Q)),
-    (w, has_que_marker(Q))
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QVCL1 = [
@@ -189,7 +204,8 @@ QVCL1 = [
     (w, has_ecq_marker(V)),
     (w, prec_subj(V,S)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QVCL2 = [
     (p, ch(CH) + fin_copaux(CH,V) + precedes(Q,V) + qu_word(V,Q) +
@@ -197,14 +213,16 @@ QVCL2 = [
     (w, has_ecq_marker(CH)),
     (w, prec_subj(CH,S)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QVCL3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + precedes(Q,V) + 
      cl_marker(Q,CL) + precedes(V,CL)),
     (w, has_ecq_marker(Q)),
-    (w, prec_subj(Q,S)),
-    (w, has_que_marker(Q))
+    (w, suc_subj(Q,S)),
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QGNVCL1 = [
@@ -213,7 +231,8 @@ QGNVCL1 = [
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QGNVCL2 = [
     (p, ch(CH) + fin_copaux(CH,V) + prec_gn(CH,GN) + precedes(GN,V) +
@@ -221,13 +240,15 @@ QGNVCL2 = [
      cl_marker(CH,CL) + precedes(V,CL)),
     (w, has_ecq_marker(CH)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QGNVCL3 = [
     (p, ch(Q) + suc_gn(Q,GN) + is_qu_word(Q) + fin_copaux(Q,V) + precedes(GN,V) +
      cl_marker(Q, CL) + precedes(V, CL)),
     (w, has_ecq_marker(Q)),
-    (w, has_que_marker(Q))
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QVGN1 = [
@@ -237,7 +258,9 @@ QVGN1 = [
     (w, has_cl_marker(V)),
     (w, cl_marker(V,GN)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, prec_subj(V,S)),
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QVGN2 = [
     (p, ch(CH) + fin_copaux(CH,V) + precedes(V,CH) + suc_gn(CH,GN) +
@@ -246,14 +269,18 @@ QVGN2 = [
     (w, has_cl_marker(CH)),
     (w, cl_marker(CH,GN)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, prec_subj(CH,S)),
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QVGN3 = [
     (p, ch(Q) + is_qu_word(Q) + suc_gn(Q,GN) + fin_copaux(Q,V) + precedes(V,GN)),
     (w, has_ecq_marker(Q)),
     (w, has_cl_marker(Q)),
     (w, cl_marker(Q,GN)),
-    (w, has_que_marker(Q))
+    (w, suc_subj(Q,S)),
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 SEQKSV1 = [
@@ -263,7 +290,8 @@ SEQKSV1 = [
     (w, has_cl_marker(V)),
     (w, has_ecq_marker(V)),
     (w, que_marker(V, "K2")),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 SEQKSV2 = [
     (p,ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
@@ -272,7 +300,8 @@ SEQKSV2 = [
     (w, has_cl_marker(CH)),
     (w, has_ecq_marker(CH)),
     (w, que_marker(CH, "K2")),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 SEQKSV3 = [
     (p,ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + suc_subj(Q,S) + cleft(C,EST,K) + 
@@ -280,6 +309,7 @@ SEQKSV3 = [
     (w, has_cl_marker(Q)),
     (w, has_ecq_marker(Q)),
     (w, que_marker(Q, "K2")),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QESV1 = [
@@ -288,20 +318,23 @@ QESV1 = [
     (w, copaux(V,W)),
     (w, has_cl_marker(V)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QESV2 = [
     (p,ch(CH) + fin_copaux(CH,V) + ecq_marker(CH,E) + qu_word(CH,Q) +
      precedes(Q,E) + prec_subj(CH,S) + precedes(S,V) + precedes(E,S)),
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QESV3 = [
     (p,ch(Q) + is_qu_word(Q) + ecq_marker(Q,E) + fin_copaux(Q,V) + precedes(Q,E)
      + suc_subj(Q,S) + precedes(E,S) + precedes(S,V)),
     (w, has_cl_marker(Q)),
     (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QSEKSV1 = [
@@ -311,7 +344,8 @@ QSEKSV1 = [
     (w, has_cl_marker(V)),
     (w, has_ecq_marker(V)),
     (w, que_marker(V, "K2")),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QSEKSV2 = [
     (p, ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
@@ -320,7 +354,8 @@ QSEKSV2 = [
     (w, has_cl_marker(CH)),
     (w, has_ecq_marker(CH)),
     (w, que_marker(CH, "K2")),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QSEKSV3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + suc_subj(S,S) + cleft(C,EST,K) + 
@@ -328,6 +363,7 @@ QSEKSV3 = [
     (w, has_cl_marker(Q)),
     (w, has_ecq_marker(Q)),
     (w, que_marker(Q, "K2")),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QKSV1 = [
@@ -336,20 +372,23 @@ QKSV1 = [
     (w, copaux(V,W)),
     (w, has_cl_marker(V)),
     (w, is_qu_word(V)),
-    (w, has_ecq_marker(V))
+    (w, has_ecq_marker(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QKSV2 = [
     (p, ch(CH) + fin_copaux(CH,V) + que_marker(CH,K) + qu_word(CH,Q) +
      precedes(Q,K) + prec_subj(CH,S) + precedes(S,V) + precedes(K,S)),
     (w, has_cl_marker(CH)),
     (w, is_qu_word(CH)),
-    (w, has_ecq_marker(CH))
+    (w, has_ecq_marker(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QKSV3 = [
     (p, ch(Q) + is_qu_word(Q) + que_marker(V,K) + fin_copaux(Q, V) +
      precedes(Q,K) + suc_subj(Q,S) + precedes(K,S) + precedes(S,V)),
     (w, has_cl_marker(Q)),
-    (w, has_ecq_marker(Q))
+    (w, has_ecq_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QeqSV1 = [
@@ -358,7 +397,8 @@ QeqSV1 = [
     (w, has_cl_marker(V)),
     (w, has_ecq_marker(V)),
     (w, has_que_marker(V)),
-    (w, is_qu_word(V))
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
 ]
 QeqSV2 = [
     (p, ch(CH) + fin_copaux(CH,V) + prec_subj(CH,Q) + precedes(Q,V) +
@@ -366,13 +406,118 @@ QeqSV2 = [
     (w, has_cl_marker(CH)),
     (w, has_ecq_marker(CH)),
     (w, has_que_marker(CH)),
-    (w, is_qu_word(CH))
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QeqSV3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + precedes(Q,V)),
     (w, has_cl_marker(V)),
     (w, has_ecq_marker(V)),
-    (w, has_que_marker(V))
+    (w, has_que_marker(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
+]
+
+QEVGN1 = [
+    (p, ch(V) + qu_word(V,Q) + ecq_marker(V,E) + suc_gn(V,GN) + 
+     precedes(Q,E) + precedes(E,V)),
+    (w, copaux(V, W)),
+    (w, has_cl_marker(V)),
+    (w, cl_marker(V,GN)),
+    (w, has_que_marker(V)),
+    (w, prec_subj(V,S)),
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
+]
+QEVGN2 = [
+    (p, ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + ecq_marker(CH,E) +
+     suc_gn(CH,GN) + precedes(Q,E) + precedes(E,V) + precedes(V,GN)),
+    (w, has_cl_marker(CH)),
+    (w, cl_marker(CH,GN)),
+    (w, has_que_marker(CH)),
+    (w, prec_subj(CH,S)),
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
+]
+QEVGN3 = [
+    (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + ecq_marker(Q,E) + suc_gn(Q,GN) + 
+     precedes(Q,E) + precedes(E,V) + precedes(V,GN)),
+    (w, has_cl_marker(Q)),
+    (w, cl_marker(Q,GN)),
+    (w, suc_subj(Q,S)),
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
+]
+
+QeqSVCL1 = [
+    (p, ch(V) + qu_word(V,Q) + cl_marker(V,CL) + prec_subj(V,Q) +
+     precedes(V,CL)),
+    (w, copaux(V, W)),
+    (w, has_ecq_marker(V)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
+]
+QeqSVCL2 = [
+    (p, ch(CH) + fin_copaux(CH, V) + qu_word(CH,Q) + cl_marker(CH,CL) +
+     prec_subj(CH,Q) + precedes(Q,V) + precedes(V,CL)),
+    (w, has_ecq_marker(CH)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
+]
+QeqSVCL3 = [
+    (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + cl_marker(Q,CL) +
+     precedes(V,CL)),
+    (w, copaux(Q, W)),
+    (w, has_ecq_marker(Q)),
+    (w, has_que_marker(Q)),
+    (w, suc_subj(Q,S)),
+    (w, is_qu_word(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
+]
+
+EGNVCL1 = [
+    (p, ch(V) + prec_gn(V,GN) + ecq_marker(V,E) + precedes(E,GN) + 
+     cl_marker(V,CL) + precedes(V,CL)),
+    (w, copaux(V, W)),
+    (w, has_que_marker(V)),
+    (w, qu_word(V,Q)),
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
+]
+EGNVCL2 = [
+    (p, ch(CH) + fin_copaux(CH,V) + prec_gn(CH,GN) + precedes(GN,V) +
+     ecq_marker(CH,E) + precedes(E,GN) + 
+     cl_marker(CH,CL) + precedes(V,CL)),
+    (w, has_que_marker(CH)),
+    (w, qu_word(CH,Q)),
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
+]
+
+QEGNVCL1 = [
+    (p, ch(V) + prec_gn(V,GN) + ecq_marker(V,E) + precedes(E,GN) + 
+     cl_marker(V,CL) + precedes(V,CL) + 
+     qu_word(V,Q) + precedes(Q,E)),
+    (w, copaux(V, W)),
+    (w, has_que_marker(V)),
+    (w, is_qu_word(V)),
+    (w, subordinated1(V)), (w, subordinated2(V))
+]
+QEGNVCL2 = [
+    (p, ch(CH) + fin_copaux(CH,V) + prec_gn(CH,GN) + precedes(GN,V) +
+     ecq_marker(CH,E) + precedes(E,GN) + 
+     cl_marker(CH,CL) + precedes(V,CL) + qu_word(CH,Q) + precedes(Q,E)),
+    (w, has_que_marker(CH)),
+    (w, is_qu_word(CH)),
+    (w, subordinated1(CH)), (w, subordinated2(CH))
+]
+QEGNVCL3 = [
+    (p, ch(Q) + fin_copaux(Q,V) + suc_gn(Q,GN) + precedes(GN,V) +
+     ecq_marker(CH,E) + precedes(E,GN) + 
+     cl_marker(Q,CL) + precedes(V,CL) + is_qu_word(Q) + precedes(Q,E)),
+    (w, has_que_marker(Q)),
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 COVENEY_REQS = { # From [Coveney 2011]
@@ -392,8 +537,8 @@ COVENEY_REQS = { # From [Coveney 2011]
     "QkSV": [QKSV1, QKSV2, QKSV3], # Où qu’ils sont partis ?
     "Q=S_V": [QeqSV1, QeqSV2, QeqSV3], # Lesquels sont partis ?
     # hybrid
-    "QEV_GN": "qu+ 'est-ce que' + stylistic inversion", # Avec qui est-ce que travaille nicole Dupont ?
-    "Q=S_V-CL": "subject qu + clitic inversion", # De ces fillettes, lesquelles sont-elles les tiennes ?
-    "E_GN_V-CL": "'est-ce que' + complex inversion", # Est-ce que demain les sauveteurs pourront-ils s’approcher des alpinistes en détresse ?
-    "QE_GN_V-CL": "qu + 'est-ce que' + complex inversion" # Qu’est-ce que le rédacteur de la rubrique des chats écrasés entend-il par un pachyderme ?
+    "QEV_GN": [QEVGN1, QEVGN2, QEVGN3], # Avec qui est-ce que travaille nicole Dupont ?
+    "Q=S_V-CL": [QeqSVCL1, QeqSVCL2, QeqSVCL3], # De ces fillettes, lesquelles sont-elles les tiennes ?
+    "E_GN_V-CL": [EGNVCL1, EGNVCL2], # Est-ce que demain les sauveteurs pourront-ils s’approcher des alpinistes en détresse ?
+    "QE_GN_V-CL": [QEGNVCL1, QEGNVCL2, QEGNVCL3] # Qu’est-ce que le rédacteur de la rubrique des chats écrasés entend-il par un pachyderme ?
 }
