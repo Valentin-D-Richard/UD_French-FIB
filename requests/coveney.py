@@ -9,7 +9,6 @@ CL = "CL" # clitic subject marker
 GN = "GN" # nominal subject
 CH = "CH" # UD clause head (if different from V)
 K = "K" # 'que'
-SI = "SI"
 C = "C"
 EST = "EST"
 W = "*" # wildcard
@@ -93,7 +92,7 @@ def subordinated2(head:str) -> str:
 ##### Request descriptions
 
 # Version 1 with V as main verb
-# Version 2 with V auxiliary or copula
+# Version 2 with V finite auxiliary or copula
 # Version 3 Q is UD clause head and V as auxiliary or copula
 
 ### yes-no
