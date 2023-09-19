@@ -41,7 +41,7 @@ The program outputs a table of occurrences of French interrogatives, grouped by 
  * `richard`
  * `no`
 
-### coveney
+### `coveney`
 
 The classification `coveney` (direct interrogatives only) is based on:
 
@@ -68,11 +68,13 @@ The list of categories is:
    * `E_GN_V-CL`: 'est-ce que' + complex inversion, e.g. *Est-ce que demain les sauveteurs pourront-ils s’approcher des alpinistes en détresse ?*
    * `QE_GN_V-CL`: qu + 'est-ce que' + complex inversion e.g. *Qu’est-ce que le rédacteur de la rubrique des chats écrasés entend-il par un pachyderme ?*
 
-### richard
+**Note:** Contrary to [Coveney 2011], `stats.py` considers expression *qu'est-ce que/qui* as an interrogative word, and not as `Q` + *est-ce que* pattern.
+
+### `richard`
 
 WIP
 
-### no
+### `no`
 
 With `no`, no grouping on syntactic pattern is performed.
 
