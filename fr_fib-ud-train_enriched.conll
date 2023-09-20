@@ -39566,7 +39566,7 @@
 13	?	?	PUNCT	.	_	12	punct	_	_
 
 # newdoc id = PUD_n03006
-# sent_id = n03006003
+# sent_id = PUD_n03006003
 # text = Quelles sont les limites qui peuvent être opposées à l'expression de convictions religieuses dans les entreprises privées ?
 # text_en = What are the limits that could inhibit the expression of religious beliefs in private companies?
 1	Quelles	quel	ADJ	_	Gender=Fem|Number=Plur|PronType=Int	0	root	_	ClauseType=Int|PhraseType=Int|wordform=quelles
@@ -39590,7 +39590,7 @@
 19	?	?	PUNCT	.	_	1	punct	_	_
 
 # newdoc id = PUD_n02056
-# sent_id = n02056019
+# sent_id = PUD_n02056019
 # text = On ne sait pas vraiment pourquoi la promotion de la vidéo se déroule en Allemagne.
 # text_en = The reason for advertising the video in Germany is unclear.
 1	On	on	PRON	PRP	Number=Sing|Person=3|PronType=Ind	3	nsubj	_	wordform=on
@@ -39611,7 +39611,7 @@
 16	.	.	PUNCT	.	_	3	punct	_	_
 
 # newdoc id = PUD_n02048
-# sent_id = n02048002
+# sent_id = PUD_n02048002
 # text = Est-ce que vous vous disputez avec votre réveille-matin ?
 # text_en = Do you argue with your alarm clock?
 1	Est	être	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	6|6	cue:mark|mark	_	ExtPos=SCONJ|SpaceAfter=No
@@ -39626,7 +39626,7 @@
 10	?	?	PUNCT	.	_	6	punct	_	_
 
 # newdoc id = PUD_n02022
-# sent_id = n02022015
+# sent_id = PUD_n02022015
 # text = On ne sait pas comment les deux dramaturges auraient travaillé ensemble.
 # text_en = One doesn't know in which way both dramatists would have worked together.
 1	On	on	PRON	PRP	Number=Sing|Person=3|PronType=Ind	3	nsubj	_	wordform=on
@@ -39643,7 +39643,7 @@
 12	.	.	PUNCT	.	_	3	punct	_	_
 
 # newdoc id = PUD_w01140
-# sent_id = w01140030
+# sent_id = PUD_w01140030
 # text = Dès 1926, Stephen Meyer s’était adressé à Irène Joliot-Curie suggérant qu’Elizabeth Rona devrait collaborer avec elle pour apprendre comment son laboratoire pouvait créer ses propres échantillons de polonium.
 # text_en = As early as 1926, Meyer had written to Irène Joliot-Curie suggesting that Rona work with her to learn how his laboratory could make their own polonium samples.
 1	Dès	dès	ADP	IN	_	2	case	_	wordform=dès
@@ -39914,7 +39914,7 @@
 18	?	?	PUNCT	.	_	17	punct	_	_
 
 # newdoc id = PUD_n01073
-# sent_id = n01073004
+# sent_id = PUD_n01073004
 # text = Qui peut arrêter l'équipe d'Australie ?
 # text_en = Who can stop this Australia side?
 1	Qui	qui	PRON	WP	PronType=Int	2|2	cue:wh|nsubj	_	PhraseType=Int|wordform=qui
@@ -40075,7 +40075,7 @@
 19	.	.	PUNCT	.	_	4	punct	_	_
 
 # newdoc id = PUD_n01027
-# sent_id = n01027007
+# sent_id = PUD_n01027007
 # text = Qui sont-ils ?
 # text_en = Who are they?
 1	Qui	qui	PRON	WP	PronType=Int	0	root	_	ClauseType=Int|PhraseType=Int|wordform=qui

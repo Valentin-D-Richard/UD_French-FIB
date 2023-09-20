@@ -5,13 +5,15 @@
 
 import pandas as pd
 import argparse as arg
+import os
 import matplotlib.pyplot as plt
 import grewpy as gp
 gp.set_config("ud")
 
 ##### Global constant variables
 
-FORMATS = ["txt", "csv", "json", "plot", "sents", "graphs"]
+FORMATS = ["txt", "csv", "json", "plot", "sents", "html", "svg", "png"]
+SENT_FORMATS = ["sents", "html", "svg", "png"]
 
 # List of corpora (sentence id prefix)
 SUBCORPORA = ["FQB", "Sequoia", "GSD", "ParTUT", "PUD", "Rhap",
@@ -45,6 +47,7 @@ COVENEY = { # From [Coveney 2011]
     "QE_GN_V-CL": "qu + 'est-ce que' + complex inversion" # Qu’est-ce que le rédacteur de la rubrique des chats écrasés entend-il par un pachyderme ?
 }
 
+from requests.modular import MODULAR_REQ
 MODULAR = {}
 
 from requests.no import NO_REQS
@@ -53,8 +56,8 @@ NO = {
 }
 
 SCHEMES = {
-    "coveney":(COVENEY, COVENEY_REQS),
-    "modular":MODULAR, "no":(NO, NO_REQS)}
+    "coveney":COVENEY_REQS,
+    "modular":MODULAR_REQ, "no":NO_REQS}
 
 ##### Argument parser
 description = "Extract sentences and compile statitics"
@@ -98,8 +101,7 @@ o_format = args.format[0]
 
 def cat_req(scheme:str, cat:str) -> list:
     """Returns the request extracting pattern expressed by cat in scheme"""
-    return SCHEMES[scheme][1][cat]
-
+    return SCHEMES[scheme][cat]
 
 def subcorpus_req(subcorpus_name:str) -> tuple:
     """"Returns a request that the sentence comes from subcorpus_name"""
@@ -124,7 +126,7 @@ def search_res(corpus: gp.Corpus, cat:str, subcorpus:str) -> list:
     and subcorpus"""
     res = []
     for elt_list in cat_req(scheme, cat):
-        res += corpus.search(elt_subcorpus_req(elt_list, subcorpus))
+        res += corpus.search(elt_subcorpus_req(elt_list, subcorpus), deco=True)
     return res
 
 def add_totals(df:pd.DataFrame) -> ():
@@ -137,21 +139,21 @@ def add_totals(df:pd.DataFrame) -> ():
 
 #### Main function
 dict = {"subcorpus": subcorpora}
-dict.update({cat:0 for cat in SCHEMES[scheme][0].keys()})
+dict.update({cat:0 for cat in SCHEMES[scheme].keys()})
 frame = pd.DataFrame(dict)
 
 corpus = gp.Corpus(args.filenames)
 
 # Computing occurence number par category and subcorpus
-if o_format != "sents" and o_format != "graphs":
-    for cat in SCHEMES[scheme][0].keys():
+if o_format not in SENT_FORMATS:
+    for cat in SCHEMES[scheme].keys():
         for i, subcorpus in enumerate(subcorpora):
             frame.at[i,cat] = 0
 
             # Adding the counts of the different requests
             # defined in requests/<scheme>.py
             for elt_list in cat_req(scheme, cat):
-                request = elt_subcorpus_req(elt_list, i)
+                request = elt_subcorpus_req(elt_list, subcorpus)
                 try:
                     frame.at[i,cat] += corpus.count(request)
                     
@@ -164,9 +166,9 @@ if o_format != "sents" and o_format != "graphs":
 
     add_totals(frame)
 
-if o_format == "sents" or o_format == "graphs":
+else:
     # Concatenating the list of results of search requests
-    for cat in SCHEMES[scheme][0].keys():
+    for cat in SCHEMES[scheme].keys():
         frame[cat] = frame.apply(
             lambda idx: search_res(corpus, cat, idx[0]), axis=1
         )
@@ -194,23 +196,66 @@ elif o_format == "plot":
 elif o_format == "sents":
 
     # Printing the list of sentences
-    for cat in SCHEMES[scheme][0].keys():
+    for cat in SCHEMES[scheme].keys():
         print("########## Category:", cat)
         for i, subcorpus in enumerate(subcorpora):
             print("##### Corpus:", subcorpus)
-            sents = set([corpus.get(sent['sent_id']).json_data()
+            sents = set([corpus[sent['sent_id']].json_data()
                         ['meta']['text'] for sent in frame.at[i,cat]])
             print('\n'.join(sents))
 
-elif o_format == "graphs":
+elif o_format == "html":
+
+    # Printing the list of sentences
+    for cat in SCHEMES[scheme].keys():
+        print("<h2>Category: "+cat+"</h2>")
+        for i, subcorpus in enumerate(subcorpora):
+            print("<h3>Corpus: "+subcorpus+"</h3>")
+            for match in frame.at[i,cat]:
+                sent_id = match['sent_id']
+                deco = match['deco']
+                print(corpus[sent_id].to_sentence(deco=deco))
+
+elif o_format == "svg" or o_format == "png":
+    dir = "results/svg/"
+    prev_sent_id = ""
+    i = 2
 
     # Creating a dot file for every sentences
-    for cat in SCHEMES[scheme][0].keys():
-        for i, subcorpus in enumerate(subcorpora):
-            for sent in frame.at[i,cat]:
-                dot = corpus.get(sent['sent_id']).to_dot()
-                print(dot)
+    for cat in SCHEMES[scheme].keys():
+        subdir = cat+"/"
+        # creates the directory if it does not exist
+        if not os.path.exists(dir + subdir):
+            os.makedirs(dir + subdir)
 
+        # Creates a svg/png out of every match
+        for i, subcorpus in enumerate(subcorpora):
+            for match in frame.at[i,cat]:
+                sent_id = match['sent_id']
+                deco = match['deco']
+                filename = dir + subdir + sent_id
+
+                # Checking filename to avoid collisions
+                if prev_sent_id == sent_id:
+                    filename += "___" + str(i)
+                    i += 1
+                else:
+                    prev_sent_id = sent_id
+                    i = 2
+
+                if o_format == "svg":
+                    filename += ".svg"
+                    with open(filename, "w") as f:
+                        f.write(corpus[sent_id].to_svg(deco=deco))
+
+                if o_format == "png":
+                    filename += ".png"
+                    with open(filename, "w") as f:
+                        f.write(corpus[sent_id].to_svg(deco=deco))
+                        # Transformaing transparent by white background
+                        cmd = "convert "+filename+"  -background white "
+                        cmd += "-alpha remove -flatten -alpha off "+filename
+                        os.system(cmd)
 
 else:
     print(frame)

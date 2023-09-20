@@ -8,6 +8,7 @@ E = "E" # 'est-ce que'
 CL = "CL" # clitic subject marker
 GN = "GN" # nominal subject
 CH = "CH" # UD clause head (if different from V)
+QUE = "QUE" # que marker
 K = "K" # 'que'
 C = "C"
 EST = "EST"
@@ -39,10 +40,13 @@ def que_marker(head:str, marker:str) -> str:
     return req+marker+'[lemma="que"] ; \n'
 
 def has_que_marker(head:str) -> str:
-    return cl_marker(head, K)
+    return cl_marker(head, QUE)
 
 def ch(head:str) -> str: # is_clause_head
     return head+'[ClauseType="Int"] ; \n'
+
+def ph(head:str) -> str: # is_phrase_head
+    return head+'[PhraseType="Int"] ; \n'
 
 def is_qu_word(head:str) -> str:
     return head+'[PronType="Int"] ; \n'
@@ -202,6 +206,7 @@ SVQ3 = [
 QSV1 = [
     (p, ch(V) + qu_word(V,Q) + prec_subj(V,S) + precedes(Q,S)),
     (w, copaux(V,W)),
+    (w, ph(S)),
     (w, has_ecq_marker(V)),
     (w, has_cl_marker(V)),
     (w, has_que_marker(V)),
@@ -212,6 +217,7 @@ QSV2 = [
     (p, ch(CH) + fin_copaux(CH,V) + qu_word(CH,Q) + prec_subj(CH,S) +
      precedes(S,V) + precedes(Q,S)),
     (w, has_ecq_marker(CH)),
+    (w, ph(S)),
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
@@ -236,6 +242,7 @@ QVCL1 = [
     (w, copaux(V,W)),
     (w, has_ecq_marker(V)),
     (w, prec_subj(V,S)),
+    (w, prec_subj(V,Q)),
     (w, has_que_marker(V)),
     (w, is_qu_word(V)),
     (w, subordinated1(V)), (w, subordinated2(V))
@@ -245,6 +252,7 @@ QVCL2 = [
      cl_marker(CH,CL) + precedes(V,CL)),
     (w, has_ecq_marker(CH)),
     (w, prec_subj(CH,S)),
+    (w, prec_subj(CH,Q)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
     (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
@@ -474,12 +482,13 @@ QeqSV2 = [
 ]
 QeqSV3 = [
     (p, ch(Q) + is_qu_word(Q) + fin_copaux(Q,V) + precedes(Q,V)),
-    (w, has_cl_marker(V)),
-    (w, has_ecq_marker(V)),
-    (w, has_que_marker(V)),
+    (w, suc_gn(Q, S)),
+    (w, has_cl_marker(Q)),
+    (w, has_ecq_marker(Q)),
+    (w, has_que_marker(Q)),
     (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
     (w, has_right_fininf_cop(Q)),
-    (w, subordinated1(V)), (w, subordinated2(V))
+    (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
 QEVGN1 = [

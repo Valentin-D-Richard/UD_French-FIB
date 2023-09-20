@@ -9,7 +9,7 @@ This python script can be used to count occurrences of French interrogative in t
  * `pandas`
  * `matplotlib.pyplot`
  * `argparse`
- * `grewpy` v. >= 0.4.3 (requires `grew`, see [https://grew.fr/usage/python/])
+ * `grewpy` v. >= 0.4.3 (requires `grew`, see [https://grew.fr/usage/python/], grewpy_backend v. >= 0.5.1)
 
 You can install them using `pip3`.
 
@@ -88,7 +88,11 @@ The available output formats are
  * `json`
  * `plot`: bar plot
  * `sents`: list of raw text sentences exhibiting the pattern
- * `graphs`: list of highlighted graphs
+ * `html`: list of text sentences exhibiting the pattern with html highlight
+ * `svg`: list of highlighted graphs, saved under `results/svg/`
+ * `png`: like `svg`, but converts to png with a white background
+
+For some unknown reason, the png converter fails on some sentences. But the svg output should always work.
 
 ## Selecting subcorpora: -i, --include / -e, --exclude
 
@@ -114,14 +118,14 @@ gives:
 
 ```csv
 ,subcorpus,all,Total
-0,FQB,2230,2230
-1,Sequoia,96,96
-2,GSD,322,322
-3,ParTUT,39,39
-4,PUD,17,17
-5,Rhap,130,130
-6,ParisStories,131,131
-7,Total,2965,2965
+0,FQB,2234,2234
+1,Sequoia,102,102
+2,GSD,338,338
+3,ParTUT,40,40
+4,PUD,24,24
+5,Rhap,138,138
+6,ParisStories,137,137
+7,Total,3013,3013
 ```
 
 ```bash
