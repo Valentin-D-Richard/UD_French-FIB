@@ -11,6 +11,7 @@ CH = "CH" # UD clause head (if different from V)
 K = "K" # 'que'
 C = "C"
 EST = "EST"
+A = "A" # other auxiliary or copula
 W = "*" # wildcard
 p = "pattern"
 w = "without"
@@ -88,6 +89,28 @@ def subordinated2(head:str) -> str:
     req = 'A -[1=acl|advcl]-> '+head+' ; \n'
     return req+head+' -> P ; P[lemma="ADP"] ; P << '+head
 
+# How to select the right main verb when it is a copula or auxiliary:
+# Rule: i. When there is an auxiliary and at least one copula, we
+#    select the auxiliary
+#       ii. When there are only two copulas, we select the rightmost one
+# This rule can be emulated with grew paterns (for French interrogatives):
+# Select the finite or infinite copula or axuiliary V such that:
+#   there is no finite or infinitive auxiliary on the right or left of V
+#   and no finite or infinitive copula on the right of V
+
+def has_fininf_aux(head:str) -> str:
+    return head+' -[1=aux]-> A ; A[VerbForm="Fin"|"Inf"] ; \n'
+
+def has_left_fininf_aux(head:str) -> str:
+    return has_fininf_aux(head)+'A << '+head+' ; \n'
+
+def has_right_fininf_aux(head:str) -> str:
+    return has_fininf_aux(head)+head+' << A ; \n'
+
+def has_right_fininf_cop(head:str) -> str:
+    req = head+' -[1=cop]-> A ; A[VerbForm="Fin"|"Inf"] ;  '
+    return req+head+' << A ; \n'
+
 
 ##### Request descriptions
 
@@ -120,6 +143,8 @@ VCL2 = [
     (w, is_qu_word(CH)),
     (w, prec_subj(CH,S)),
     (w, has_ecq_marker(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 
@@ -159,6 +184,8 @@ SVQ2 = [
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 SVQ3 = [
@@ -166,6 +193,8 @@ SVQ3 = [
     (w, has_ecq_marker(Q)),
     (w, has_cl_marker(Q)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -185,6 +214,8 @@ QSV2 = [
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QSV3 = [
@@ -193,6 +224,8 @@ QSV3 = [
     (w, has_ecq_marker(Q)),
     (w, has_cl_marker(Q)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -213,6 +246,8 @@ QVCL2 = [
     (w, prec_subj(CH,S)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QVCL3 = [
@@ -221,6 +256,8 @@ QVCL3 = [
     (w, has_ecq_marker(Q)),
     (w, suc_subj(Q,S)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -240,6 +277,8 @@ QGNVCL2 = [
     (w, has_ecq_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QGNVCL3 = [
@@ -247,6 +286,8 @@ QGNVCL3 = [
      cl_marker(Q, CL) + precedes(V, CL)),
     (w, has_ecq_marker(Q)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -270,6 +311,8 @@ QVGN2 = [
     (w, has_que_marker(CH)),
     (w, prec_subj(CH,S)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QVGN3 = [
@@ -279,6 +322,8 @@ QVGN3 = [
     (w, cl_marker(Q,GN)),
     (w, suc_subj(Q,S)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -300,6 +345,8 @@ SEQKSV2 = [
     (w, has_ecq_marker(CH)),
     (w, que_marker(CH, "K2")),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 SEQKSV3 = [
@@ -308,6 +355,8 @@ SEQKSV3 = [
     (w, has_cl_marker(Q)),
     (w, has_ecq_marker(Q)),
     (w, que_marker(Q, "K2")),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -326,6 +375,8 @@ QESV2 = [
     (w, has_cl_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QESV3 = [
@@ -333,6 +384,8 @@ QESV3 = [
      + suc_subj(Q,S) + precedes(E,S) + precedes(S,V)),
     (w, has_cl_marker(Q)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -354,6 +407,8 @@ QSEKSV2 = [
     (w, has_ecq_marker(CH)),
     (w, que_marker(CH, "K2")),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QSEKSV3 = [
@@ -362,6 +417,8 @@ QSEKSV3 = [
     (w, has_cl_marker(Q)),
     (w, has_ecq_marker(Q)),
     (w, que_marker(Q, "K2")),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -380,6 +437,8 @@ QKSV2 = [
     (w, has_cl_marker(CH)),
     (w, is_qu_word(CH)),
     (w, has_ecq_marker(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QKSV3 = [
@@ -387,6 +446,8 @@ QKSV3 = [
      precedes(Q,K) + suc_subj(Q,S) + precedes(K,S) + precedes(S,V)),
     (w, has_cl_marker(Q)),
     (w, has_ecq_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -406,6 +467,8 @@ QeqSV2 = [
     (w, has_ecq_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QeqSV3 = [
@@ -413,6 +476,8 @@ QeqSV3 = [
     (w, has_cl_marker(V)),
     (w, has_ecq_marker(V)),
     (w, has_que_marker(V)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(V)), (w, subordinated2(V))
 ]
 
@@ -435,6 +500,8 @@ QEVGN2 = [
     (w, has_que_marker(CH)),
     (w, prec_subj(CH,S)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QEVGN3 = [
@@ -444,6 +511,8 @@ QEVGN3 = [
     (w, cl_marker(Q,GN)),
     (w, suc_subj(Q,S)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -462,6 +531,8 @@ QeqSVCL2 = [
     (w, has_ecq_marker(CH)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QeqSVCL3 = [
@@ -472,6 +543,8 @@ QeqSVCL3 = [
     (w, has_que_marker(Q)),
     (w, suc_subj(Q,S)),
     (w, is_qu_word(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 
@@ -491,6 +564,8 @@ EGNVCL2 = [
     (w, has_que_marker(CH)),
     (w, qu_word(CH,Q)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 
@@ -509,6 +584,8 @@ QEGNVCL2 = [
      cl_marker(CH,CL) + precedes(V,CL) + qu_word(CH,Q) + precedes(Q,E)),
     (w, has_que_marker(CH)),
     (w, is_qu_word(CH)),
+    (w, has_left_fininf_aux(CH)), (w, has_right_fininf_aux(CH)),
+    (w, has_right_fininf_cop(CH)),
     (w, subordinated1(CH)), (w, subordinated2(CH))
 ]
 QEGNVCL3 = [
@@ -516,6 +593,8 @@ QEGNVCL3 = [
      ecq_marker(CH,E) + precedes(E,GN) + 
      cl_marker(Q,CL) + precedes(V,CL) + is_qu_word(Q) + precedes(Q,E)),
     (w, has_que_marker(Q)),
+    (w, has_left_fininf_aux(Q)), (w, has_right_fininf_aux(Q)),
+    (w, has_right_fininf_cop(Q)),
     (w, subordinated1(Q)), (w, subordinated2(Q))
 ]
 

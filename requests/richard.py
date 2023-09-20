@@ -26,6 +26,9 @@ def w(pattern:str) -> str:
 def ch_anchor(head:str) -> str:
     return head+'[ClauseType="Int"] ; a: A -> V'
 
+def fininf_copaux(head:str,verb:str) -> str:
+    return verb+'[VerbForm="Fin"|"Inf"] ; '+cv.copaux(head,verb)
+
 def has_si_marker(head:str) -> str:
     req = head+' -[cue:mark]-> SI ; '
     return req+'SI[lemma="si"] ; \n'
@@ -39,14 +42,24 @@ def has_titu_marker2(head:str) -> str:
     return req+'T[form="tu"|"-tu"|"ti"|"-ti"|"TU"|"-TU"|"TI"|"-TI"] ; \n'
 
 # Version a: with V as main verb
-# Version b: with V auxiliary or copula
-# Version c: Q is UD clause head and V as auxiliary or copula
 
 # ClauseType and anchor
 a0_0 = cl.Snippet("0_0.")
 a0_0.request = p(ch_anchor(V))
 
 richard_a = cl.DisjRule("richard_a", a0_0)
+
+
+# Version b: with V auxiliary or copula
+
+# ClauseType, copula or auxiliary and anchor
+a0_0 = cl.Snippet("0_0.")
+a0_0.request = p(ch_anchor(CH))
+
+richard_a = cl.DisjRule("richard_a", a0_0)
+
+# Version c: Q is UD clause head and V as auxiliary or copula
+
 
 ### Clause-level interrogative marker
 def cm(H:str) -> str:
@@ -86,6 +99,28 @@ def vm(H:str) -> str:
         w(has_titu_marker2(H))
     
     return [r2_0, r2_1, r2_1p]
+
+
+### QU-word
+def qu(H:str) -> str:
+    # presence of a different qu word
+    r3_0 = cl.Snippet("3_0")
+    r3_0.request = p(cv.qu_word(H,Q))
+
+    # no qu-word
+    r3_1 = cl.Snippet("3_1")
+    r3_1.request = w(cv.qu_word(H,Q))
+
+    return [r3_0, r3_1]
+
+
+# Version a
+richard_a.add_snippets(cm(V), a0_0)
+richard_a.add_snippets(vm(V), a0_0)
+richard_a.add_snippets(qu(V), a0_0)
+
+# Version b
+
 
 
 
