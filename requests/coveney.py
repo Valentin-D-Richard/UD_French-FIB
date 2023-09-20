@@ -102,14 +102,14 @@ def has_fininf_aux(head:str) -> str:
     return head+' -[1=aux]-> A ; A[VerbForm="Fin"|"Inf"] ; \n'
 
 def has_left_fininf_aux(head:str) -> str:
-    return has_fininf_aux(head)+'A << '+head+' ; \n'
+    return has_fininf_aux(head)+'A << V ; \n'
 
 def has_right_fininf_aux(head:str) -> str:
-    return has_fininf_aux(head)+head+' << A ; \n'
+    return has_fininf_aux(head)+'V << A ; \n'
 
 def has_right_fininf_cop(head:str) -> str:
     req = head+' -[1=cop]-> A ; A[VerbForm="Fin"|"Inf"] ;  '
-    return req+head+' << A ; \n'
+    return req+'V << A ; \n'
 
 
 ##### Request descriptions
