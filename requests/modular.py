@@ -58,8 +58,6 @@ def cleft2(verb:str) -> str :
 a0_0 = cl.Snippet("0_0.")
 a0_0.request = p(cv.ch(V)) + w(cv.copaux(V,W)) + w(cv.is_qu_word(V))
 
-version_a = cl.DisjRule("version_a", a0_0)
-
 
 # Version b: with V auxiliary or copula
 
@@ -68,8 +66,6 @@ b0_0 = cl.Snippet("0_0.")
 b0_0.request = p(cv.ch(CH) + fininf_copaux(CH,V)) + \
     w(cv.has_left_fininf_aux(CH)) + w(cv.is_qu_word(CH)) + \
     w(cv.has_right_fininf_aux(CH)) + w(cv.has_right_fininf_cop(CH))
-
-version_b = cl.DisjRule("version_b", b0_0)
 
 
 # Version c: Q is UD clause head and V as auxiliary or copula
@@ -80,14 +76,11 @@ c0_0.request = p(cv.ch(Q) + fininf_copaux(Q,V) + cv.is_qu_word(Q)) + \
     w(cv.has_left_fininf_aux(Q)) + \
     w(cv.has_right_fininf_aux(Q)) + w(cv.has_right_fininf_cop(Q))
 
-version_c = cl.DisjRule("version_c", c0_0)
-
 
 # Version d: Q is UD clause head, and no verb
 d0_0 = cl.Snippet("0_0")
 d0_0.request = p(cv.ch(Q) + cv.is_qu_word(Q)) + w(cv.copaux(Q,W))
 
-version_d = cl.DisjRule("version_d", d0_0)
 
 
 ### Clause-level interrogative marker
@@ -153,6 +146,9 @@ def qu(H:str) -> str:
 c3_0 = cl.Snippet("3_0.") 
 c3_0.request = p('') # In version c, Q is the qu_word
 
+d3_0 = cl.Snippet("3_0.") 
+d3_0.request = p('') # In version c, Q is the qu_word
+
 
 ### Global place of the qu-phrase
 def ipplace_strd(H:str,MV:str) -> str:
@@ -210,7 +206,7 @@ def quspos(H:str) -> str:
 
     # root
     r8_1 = cl.Snippet("8_1.")
-    r8_1.request = w(cv.subordinated1(H)) + cv.subordinated2(H)
+    r8_1.request = w(cv.subordinated1(H)) + w(cv.subordinated2(H))
 
     return [r8_0, r8_0_alt, r8_1]
 
@@ -234,46 +230,50 @@ def subjplace(H:str,MV:str) -> str:
 
     return [r10_0, r10_1, r10_2]
 
+root = cl.Snippet("root.")
 
-
+modular = cl.DisjRule("modular", root)
+modular.add_snippets([a0_0, b0_0, c0_0, d0_0], root)
 
 # Version a
-version_a.add_snippets(cm(V), a0_0)
-version_a.add_snippets(vm(V), a0_0)
+modular.add_snippets(cm(V), a0_0)
+modular.add_snippets(vm(V), a0_0)
 qu_a = qu(V)
-version_a.add_snippets(qu_a, a0_0)
+modular.add_snippets(qu_a, a0_0)
 qu_a_snippet = qu_a[0]
-version_a.add_snippets(ipplace_strd(V,V) + ipplace_cleft(V,V), qu_a_snippet)
-version_a.add_snippets(quspos(V), a0_0)
-version_a.add_snippets(subjplace(V,V), a0_0)
+modular.add_snippets(ipplace_strd(V,V) + ipplace_cleft(V,V), qu_a_snippet)
+modular.add_snippets(quspos(V), a0_0)
+modular.add_snippets(subjplace(V,V), a0_0)
 
 # Version b
-version_b.add_snippets(cm(CH), b0_0)
-version_b.add_snippets(vm(CH), b0_0)
+modular.add_snippets(cm(CH), b0_0)
+modular.add_snippets(vm(CH), b0_0)
 qu_b = qu(CH)
-version_b.add_snippets(qu_b, b0_0)
+modular.add_snippets(qu_b, b0_0)
 qu_b_snippet = qu_b[0]
-version_b.add_snippets(ipplace_strd(CH,V) + ipplace_cleft(CH,V), qu_b_snippet)
-version_b.add_snippets(quspos(CH), b0_0)
-version_b.add_snippets(subjplace(CH,V), b0_0)
+modular.add_snippets(ipplace_strd(CH,V) + ipplace_cleft(CH,V), qu_b_snippet)
+modular.add_snippets(quspos(CH), b0_0)
+modular.add_snippets(subjplace(CH,V), b0_0)
 
 # Version c
-version_c.add_snippets(cm(Q), c0_0)
-version_c.add_snippets(vm(Q), c0_0)
-version_c.add_snippets([c3_0], c0_0)
-version_c.add_snippets(ipplace_strd(Q,V), c3_0)
-version_c.add_snippets(quspos(Q), c0_0)
-version_c.add_snippets(subjplace(Q,V), c0_0)
+modular.add_snippets(cm(Q), c0_0)
+modular.add_snippets(vm(Q), c0_0)
+modular.add_snippets([c3_0], c0_0)
+modular.add_snippets(ipplace_strd(Q,V), c3_0)
+modular.add_snippets(quspos(Q), c0_0)
+modular.add_snippets(subjplace(Q,V), c0_0)
 
 # Version d
-version_d.add_snippets(cm(Q), d0_0)
-version_d.add_snippets(vm(Q)[-1:], d0_0)
-version_d.add_snippets([c3_0], d0_0)
-version_d.add_snippets([d4_4], c3_0)
-version_d.add_snippets(quspos(Q), d0_0)
-version_d.add_snippets(subjplace(Q,W)[-1:], d0_0)
+modular.add_snippets(cm(Q), d0_0)
+modular.add_snippets(vm(Q)[-1:], d0_0)
+modular.add_snippets([d3_0], d0_0)
+modular.add_snippets([d4_4], d3_0)
+modular.add_snippets(quspos(Q), d0_0)
+modular.add_snippets(subjplace(Q,W)[-1:], d0_0)
 
-version_a.draw()
-version_b.draw()
-version_c.draw()
-version_d.draw()
+
+branches = modular.gen_branches(output="request", group_by_trace=True,
+                                keep_trace=True)
+MODULAR_REQ = {
+    cat: req_list for (cat,req_list) in branches
+}

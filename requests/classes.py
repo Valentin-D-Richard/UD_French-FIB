@@ -88,11 +88,15 @@ class DisjRule(nx.DiGraph):
             for node in proj:
                 self.add_edge(node, snippet)
 
-    def gen_branches(self, output="rule"):
+    def gen_branches(self, output="rule", group_by_trace=False,
+                     keep_trace=False) -> list:
         """Generates all rules corresponding to the concatenation
         of the requests and command excerps of all branches of self.
         If output = rule, returns rules as strings
-        If output = request, return requests only"""
+        If output = request, return requests only
+        'group_by_trace' : if True, requests having the same trace are
+            grouped in a list. The trace of a branch is the concatenation of the names
+            of its snippets"""
         result = []
         
         # Error if self is empty
@@ -109,10 +113,12 @@ class DisjRule(nx.DiGraph):
             branches = [[self.root]]
 
         for i, branch in enumerate(branches):
+            trace = ""
             requests = ""
             commands = ""
             # Concatenating request and command snippets
             for node in branch:
+                trace += node.name
                 p = "\n" if len(node.request.strip()) > 0 else ""
                 c = "\n" if len(node.command.strip()) > 0 else ""
                 requests += node.request + p
@@ -120,16 +126,28 @@ class DisjRule(nx.DiGraph):
 
             if output == "request":
                 # Only resturn the request snippet concatenation
-                result.append(requests)
+                result.append((trace,requests))
 
             else:
                 # Rule construction: requests + commands
                 rule = "rule "+self.rule_name+"_"+str(i)+" { \n" # Rule name
                 rule += "\t" + tabulate(requests)
                 rule += "commands {\n\t\t" + tabulate(tabulate(commands))
-                result.append(rule + "}\n\t}")
+                result.append((trace, rule + "}\n\t}"))
 
-        return result
+        # Formatting output
+        if not group_by_trace:
+            if keep_trace:
+                return result
+            return [elt for (_,elt) in result]
+        
+        else:
+            dict = {trace:[] for (trace,_) in result}
+            for (trace, elt) in result: # Grouping by trace
+                dict[trace].append(elt)
+            if keep_trace:
+                return [(trace, dict[trace]) for trace in dict.keys()]
+            return [dict[trace] for trace in dict.keys()]
 
     def draw(self):
         pos = { n : snippet_name_to_indices(n.name) for n in self.nodes() }
@@ -137,11 +155,9 @@ class DisjRule(nx.DiGraph):
         plt.show()
 
 
-def gen_grs(seq:list, filename:str, output="rule"):
-    """Input:   list 'seq' of DisPat objects,
+def gen_grs(seq:list, filename:str) -> ():
+    """Input:   list 'seq' of DisjRule objects,
                 file name 'filename' of output file
-                'output' must be "rule" or "request", see DisjRule.gen_branches
-                /!\\ "request" option is not supported yet
         Output: Create a .grs file with
             - a package for all DisPat
             - a Onf(Seq(...)) strategy for all package
@@ -152,27 +168,24 @@ def gen_grs(seq:list, filename:str, output="rule"):
     with open(filename,"w") as file:
         # Main loop
         main_strat = "strat main { Seq(" # Main strategy
-        for dp in seq:  # Assuming seq is not empty
-            rules = dp.gen_branches(output)
+        assert len(seq) > 0 # Assuming seq is not empty
+        for dr in seq:  
+            rules = dr.gen_branches("rule")
 
-            if output == "rule":
-                if not dp.rule_name in all_names:
-                    # Strategy name are prefixed by "pkg_"
-                    package =  "package pkg_" + dp.rule_name + " { \n"
-                    package += "\t" + tabulate("\n".join(rules))
-                    package += "\n\t}"
-                    file.write(package + "\n")
-                    
-                    strategy =  "strat " + dp.rule_name 
-                    strategy += " { Onf(Seq(pkg_" + dp.rule_name + ")) }"
-                    file.write(strategy + "\n\n")
-
-                main_strat += dp.rule_name + ","
+            if not dr.rule_name in all_names:
+                # Strategy name are prefixed by "pkg_"
+                package =  "package pkg_" + dr.rule_name + " { \n"
+                package += "\t" + tabulate("\n".join(rules))
+                package += "\n\t}"
+                file.write(package + "\n")
                 
-            all_names.add(dp.rule_name)
+                strategy =  "strat " + dr.rule_name 
+                strategy += " { Onf(Seq(pkg_" + dr.rule_name + ")) }"
+                file.write(strategy + "\n\n")
 
-        if output == "rule":
-            file.write(main_strat[:-1] + ") }")
+            main_strat += dr.rule_name + ","
+            
+        all_names.add(dr.rule_name)
 
+        file.write(main_strat[:-1] + ") }")
 
-        
