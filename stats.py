@@ -59,6 +59,16 @@ SCHEMES = {
     "coveney":COVENEY_REQS,
     "modular":MODULAR_REQ, "no":NO_REQS}
 
+HTML_HEADER = '''<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>'''
+
+HTML_FOOTER = '''</body>
+</html>'''
+
 ##### Argument parser
 description = "Extract sentences and compile statitics"
 parser = arg.ArgumentParser(description=description,
@@ -205,7 +215,7 @@ elif o_format == "sents":
             print('\n'.join(sents))
 
 elif o_format == "html":
-
+    print(HTML_HEADER)
     # Printing the list of sentences
     for cat in SCHEMES[scheme].keys():
         print("<h2>Category: "+cat+"</h2>")
@@ -214,7 +224,9 @@ elif o_format == "html":
             for match in frame.at[i,cat]:
                 sent_id = match['sent_id']
                 deco = match['deco']
-                print(corpus[sent_id].to_sentence(deco=deco))
+                sent = corpus[sent_id].to_sentence(deco=deco)
+                print('<p>'+sent+'</p>')
+    print(HTML_FOOTER)
 
 elif o_format == "svg" or o_format == "png":
     dir = "results/svg/"
