@@ -18,7 +18,7 @@ def snippet_name_to_indices(name:str):
     u_i_j (resp.r u_i_j_k) where word u contains no ciffer
     following an underscore.
     If the format is not respected, returns 0."""
-    l = name.split("_")
+    l = name.strip('.').split("_")
     for idx, w in enumerate(l):
         if w[0] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
             i = int(w)

@@ -45,7 +45,7 @@ COVENEY = { # From [Coveney 2011]
     "QE_GN_V-CL": "qu + 'est-ce que' + complex inversion" # Qu’est-ce que le rédacteur de la rubrique des chats écrasés entend-il par un pachyderme ?
 }
 
-RICHARD = {}
+MODULAR = {}
 
 from requests.no import NO_REQS
 NO = {
@@ -54,18 +54,18 @@ NO = {
 
 SCHEMES = {
     "coveney":(COVENEY, COVENEY_REQS),
-    "richard":RICHARD, "no":(NO, NO_REQS)}
+    "modular":MODULAR, "no":(NO, NO_REQS)}
 
 ##### Argument parser
 description = "Extract sentences and compile statitics"
 parser = arg.ArgumentParser(description=description,
                             prog="stats.py",
-                            epilog="Credits: Valentin D. Richard 2023")
+                            epilog="Credits: XXX") # to change
 parser.add_argument("filenames", metavar="FILE",
                     nargs="+", help="a conll(u) enriched file")
 message = '''Annotation scheme, among:
 coveney [Coveney 2011],
-richard [Richard 2023],
+modular ,
 no (doesn't aggregate on syntactic pattern)'''
 parser.add_argument("-s", "--scheme", action="store",
                         choices=SCHEMES.keys(), dest="scheme",

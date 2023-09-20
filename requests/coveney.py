@@ -12,6 +12,7 @@ K = "K" # 'que'
 C = "C"
 EST = "EST"
 A = "A" # other auxiliary or copula
+AN = "AN" # Anchor
 W = "*" # wildcard
 p = "pattern"
 w = "without"
@@ -83,10 +84,10 @@ def cleft(subj:str, cop:str, sconj:str) -> str:
     return req+sconj+'[lemma="que"|"qui"|"dont", upos="SCONJ"] ; \n'
 
 def subordinated1(head:str) -> str:
-    return 'A -[1=ccomp|csubj|xcomp]-> '+head+' ; \n'
+    return 'AN -[1=ccomp|csubj|xcomp]-> '+head+' ; \n'
 
 def subordinated2(head:str) -> str:
-    req = 'A -[1=acl|advcl]-> '+head+' ; \n'
+    req = 'AN -[1=acl|advcl]-> '+head+' ; \n'
     return req+head+' -> P ; P[lemma="ADP"] ; P << '+head
 
 # How to select the right main verb when it is a copula or auxiliary:

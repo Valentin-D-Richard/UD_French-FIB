@@ -38,7 +38,7 @@ python3 stats.py fr_fib-ud-train_enriched.conll
 The program outputs a table of occurrences of French interrogatives, grouped by subcorpus and classified by category. The category set is given by the annotation scheme. Available annotation schemes are:
 
  * `coveney` (deffault)
- * `richard`
+ * `modular`
  * `no`
 
 ### `coveney`
@@ -70,7 +70,7 @@ The list of categories is:
 
 **Note:** Contrary to [Coveney 2011], `stats.py` considers expression *qu'est-ce que/qui* as an interrogative word, and not as `Q` + *est-ce que* pattern.
 
-### `richard`
+### `modular`
 
 WIP
 
