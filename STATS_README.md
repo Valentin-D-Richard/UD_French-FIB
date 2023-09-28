@@ -39,6 +39,7 @@ The program outputs a table of occurrences of French interrogatives, grouped by 
 
  * `coveney` (deffault)
  * `modular`
+ * `embedded`
  * `no`
 
 ### `coveney`
@@ -49,6 +50,7 @@ The classification `coveney` (direct interrogatives only) is based on:
 
 The list of categories is:
  * yes-no interrogatives:
+   * `ESV`: 'est-ce que', e.g. *Est-ce que les autres / ils sont partis ?*
    * `V-CL`: clitic inversion, e.g. *Sont-ils partis ?*
    * `GN_V-CL`: complex inversion, e.g. *Les autres sont-ils partis ?*
  * constituent (fr. partielle):
@@ -74,6 +76,10 @@ The list of categories is:
 
 WIP
 
+### `embedded`
+
+Subordinated interrogatives.
+
 ### `no`
 
 With `no`, no grouping on syntactic pattern is performed.
@@ -94,9 +100,9 @@ The available output formats are
 
 For some unknown reason, the png converter fails on some sentences. But the svg output should always work.
 
-## Selecting subcorpora: -i, --include / -e, --exclude
+## Selecting subcorpora or class: -i, --include / -e, --exclude
 
-Subcorpora may be selecting using the `-i` or `-e` flags. The list of available subcorpora is:
+Subcorpora or classes may be selected using the `-i` or `-e` flags. The list of available subcorpora is:
 
  * `FQB`
  * `Sequoia`

@@ -63,6 +63,9 @@ SCHEMES = {
     "no":NO_REQS,
     "embedded":EMBEDDED_REQS}
 
+ALL_CLASSES = [cat for scheme in SCHEMES.keys()
+               for cat in SCHEMES[scheme].keys()]
+
 HTML_HEADER = '''<!DOCTYPE html>
 <html>
 <head>
@@ -94,22 +97,31 @@ parser.add_argument("-f", "--format", action="store",
                         choices=FORMATS, dest="format",
                         default=["txt"], nargs=1,
                         metavar="FORMAT", help=message)
-message = 'Subcorpora included, among: '+', '.join(SUBCORPORA)
+message = 'Subcorpora or classes included, among: '+', '.join(SUBCORPORA)
 parser.add_argument("-i", "--include", action="store",
-                        choices=SUBCORPORA, dest="include",
-                        default=SUBCORPORA, nargs="+",
+                        choices=SUBCORPORA+ALL_CLASSES, dest="include",
+                        default=SUBCORPORA+ALL_CLASSES, nargs="+",
                         metavar="SUBCORPUS", help=message)
-message = 'Subcorpora to exclude, among: '+', '.join(SUBCORPORA)
+message = 'Subcorpora or classes to exclude, among: '+', '.join(SUBCORPORA)
 parser.add_argument("-e", "--exclude", action="store",
-                        choices=SUBCORPORA, dest="exclude",
+                        choices=SUBCORPORA+ALL_CLASSES, dest="exclude",
                         default=[], nargs="+",
                         metavar="SUBCORPUS", help=message)
 
 #### Retrieving arguments
 
 args = parser.parse_args()
-subcorpora = [sc for sc in args.include if sc not in args.exclude]
+subcorpora = [sc for sc in args.include
+              if sc in SUBCORPORA and sc not in args.exclude]
+# Excluding the possibility of empty list
+subcorpora = subcorpora if subcorpora != [] else SUBCORPORA
+
 scheme = args.scheme[0]
+categories = [cat for cat in args.include
+              if cat in SCHEMES[scheme].keys() and cat not in args.exclude]
+# Excluding the possibility of empty list
+categories = categories if categories != [] else SCHEMES[scheme].keys()
+
 o_format = args.format[0]
                           
 ##### Utils
@@ -154,14 +166,14 @@ def add_totals(df:pd.DataFrame) -> ():
 
 #### Main function
 dict = {"subcorpus": subcorpora}
-dict.update({cat:0 for cat in SCHEMES[scheme].keys()})
+dict.update({cat:0 for cat in categories})
 frame = pd.DataFrame(dict)
 
 corpus = gp.Corpus(args.filenames)
 
 # Computing occurence number par category and subcorpus
 if o_format not in SENT_FORMATS:
-    for cat in SCHEMES[scheme].keys():
+    for cat in categories:
         for i, subcorpus in enumerate(subcorpora):
             frame.at[i,cat] = 0
 
@@ -183,7 +195,7 @@ if o_format not in SENT_FORMATS:
 
 else:
     # Concatenating the list of results of search requests
-    for cat in SCHEMES[scheme].keys():
+    for cat in categories:
         frame[cat] = frame.apply(
             lambda idx: search_res(corpus, cat, idx[0]), axis=1
         )
@@ -211,7 +223,7 @@ elif o_format == "plot":
 elif o_format == "sents":
 
     # Printing the list of sentences
-    for cat in SCHEMES[scheme].keys():
+    for cat in categories:
         print("########## Category:", cat)
         for i, subcorpus in enumerate(subcorpora):
             print("##### Corpus:", subcorpus)
@@ -222,7 +234,7 @@ elif o_format == "sents":
 elif o_format == "html":
     print(HTML_HEADER)
     # Printing the list of sentences
-    for cat in SCHEMES[scheme].keys():
+    for cat in categories:
         print("<h2>Category: "+cat+"</h2>")
         for i, subcorpus in enumerate(subcorpora):
             print("<h3>Corpus: "+subcorpus+"</h3>")
@@ -239,7 +251,7 @@ elif o_format == "svg" or o_format == "png":
     i = 2
 
     # Creating a dot file for every sentences
-    for cat in SCHEMES[scheme].keys():
+    for cat in categories:
         subdir = cat+"/"
         # creates the directory if it does not exist
         if not os.path.exists(dir + subdir):
