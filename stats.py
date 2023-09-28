@@ -55,9 +55,13 @@ NO = {
     "all": "no grouping by annotation scheme category"
 }
 
+from requests.embedded import EMBEDDED_REQS
+
 SCHEMES = {
     "coveney":COVENEY_REQS,
-    "modular":MODULAR_REQ, "no":NO_REQS}
+    "modular":MODULAR_REQ,
+    "no":NO_REQS,
+    "embedded":EMBEDDED_REQS}
 
 HTML_HEADER = '''<!DOCTYPE html>
 <html>
@@ -78,7 +82,8 @@ parser.add_argument("filenames", metavar="FILE",
                     nargs="+", help="a conll(u) enriched file")
 message = '''Annotation scheme, among:
 coveney [Coveney 2011],
-modular ,
+modular,
+embedded,
 no (doesn't aggregate on syntactic pattern)'''
 parser.add_argument("-s", "--scheme", action="store",
                         choices=SCHEMES.keys(), dest="scheme",

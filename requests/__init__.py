@@ -1,1 +1,1 @@
-__all__ = ["coveney.py", "modular.py", "no.py"]
+__all__ = ["coveney.py", "modular.py", "no.py", "embedded.py"]
