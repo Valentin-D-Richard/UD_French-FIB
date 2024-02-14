@@ -24,16 +24,16 @@ The identification of interrogatives clauses and the extraction were performed u
 
 Here is the number of FIB sentences by corpus origin.
 
-| Corpus | Number of sentences |
-|-|-|
-| FQB | 2230 |
-| Rhapsodie | 130 |
-| PUD | 24 |
-| ParTUT | 39 |
-| ParisStories | 131 |
-| Sequoia | 96 |
-| GSD | 322 |
-| Total | 2972 |
+| Corpus | Number of sentences | Percentage in FIB | Percentage in original corpus | 
+|-|-|-|-|
+| FQB | 2230 | 75.0 | 97.4 |
+| GSD | 322 | 10.8 | 2.0 |
+| ParisStories | 131 | 4.4 | 4.7 |
+| Rhapsodie | 130 | 4.4 | 4.1 |
+| Sequoia | 96 | 3.2 | 3.1 |
+| ParTUT | 39 | 1.3 | 3.8 |
+| PUD | 24 | 0.8 | 2.4 |
+| Total | 2972 | 100 | 10.0 |
 
 ## Changes wrt. original UD corpora
 
