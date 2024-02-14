@@ -20,6 +20,21 @@
 
 The identification of interrogatives clauses and the extraction were performed using the [FUDIA](https://github.com/Valentin-D-Richard/FUDIA) programme. 21 sentences were removed by hand because they were badly annotated, either due to an original annotation mistake, or due to limitations of FUDIA's heuristics.
 
+## Origin
+
+Here is the number of sentence by corpus origin.
+
+| Corpus | Number of sentences |
+|-|-|
+| FQB | 2230 |
+| Rhapsodie | 130 |
+| PUD | 24 |
+| ParTUT | 39 |
+| ParisStories | 131 |
+| Sequoia | 96 |
+| GSD | 322 |
+| Total | 2972 |
+
 ## Changes wrt. original UD corpora
 
 Some changes wrt. the original UD corpora have been made during the identification process. For more information about these changes, please check out the FUDIA documentation.
