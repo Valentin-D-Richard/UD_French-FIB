@@ -22,7 +22,7 @@ The identification of interrogatives clauses and the extraction were performed u
 
 ## Origin
 
-Here is the number of sentence by corpus origin.
+Here is the number of FIB sentences by corpus origin.
 
 | Corpus | Number of sentences |
 |-|-|
