@@ -80,6 +80,7 @@ The corpus contains written sentences and trasncriptions of spoken sentences. Mo
 
 ## References
 
+> Valentin D. Richard. Est-ce que l'extraction des interrogatives du français peut-elle être automatisée ?. 5èmes journées du Groupement de Recherche CNRS « Linguistique Informatique, Formelle et de Terrain » (LIFT 2023), Nov 2023, Nancy, France. pp.69-76. [⟨hal-04359947⟩](https://hal.science/hal-04359947)
 
 ## Changelog
 
@@ -93,7 +94,7 @@ Caution, due to the originical corpora, the parts of this corpus have different 
 The original corpus is prepended to all sentence id.
 
 === Machine-readable metadata (DO NOT REMOVE!) ================================
-Data available since: UD v2.0
+Data available since: UD v2.11
 License: multiple
 Includes text: yes
 Genre: wiki medical news nonfiction legal blog reviews spoken
@@ -102,5 +103,6 @@ UPOS: converted from manual
 XPOS: not available
 Features: converted from manual
 Relations: converted from manual
+Contributors: Richard, Valentin D.
 Contributing: elsewhere
 ===============================================================================
